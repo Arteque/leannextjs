@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Next.js Cheatsheet</title>
+</head>
+<body style="margin:0; padding:32px 16px; background:#f7f7f5; color:#1c1c1a; font-family:-apple-system,Segoe UI,Roboto,sans-serif; line-height:1.7;">
+
+<div style="max-width:780px; margin:0 auto;">
+
+  <h1 style="margin:0 0 4px; font-size:28px; letter-spacing:-0.5px;">Next.js Cheatsheet</h1>
+  <p style="margin:0 0 32px; color:#6b6b66; font-size:14px;">My learning log &middot; Next.js 16.3.5 &middot; React 19.2.8 &middot; newest entry first</p>
+
+  <!-- NEW ENTRIES GO DIRECTLY BELOW THIS LINE -->
+
+  <section style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px;">
+
+    <div style="font-size:12px; color:#8a8a84; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">#1 &middot; 2026-09-20 &middot; Project structure</div>
+    <h2 style="margin:0 0 18px; font-size:21px; color:#111;">How do I organise the folder structure and assets in Next.js?</h2>
+
+    <p style="margin:0 0 16px;"><strong>One-sentence answer:</strong> <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">app/</code> is your URL map, <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">public/</code> is your static files &mdash; and <em>everything else is your own choice</em>, because Next.js is deliberately unopinionated about it.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">1. The mental model (learn these two rules)</h3>
+    <ul style="margin:0 0 16px; padding-left:22px;">
+      <li>A <strong>folder inside <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">app/</code> = a piece of the URL</strong>. So <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">app/blog/authors/</code> becomes <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">/blog/authors</code>.</li>
+      <li>But a folder is <strong>not a real page until it contains <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">page.tsx</code></strong> (or <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">route.ts</code> for an API).</li>
+    </ul>
+    <p style="margin:0 0 16px;">That second rule is the one beginners miss, and it's liberating: <strong>any other file you drop into a route folder is invisible to the router.</strong> This is called <em>colocation</em> &mdash; it's why you can park a component right next to the page that uses it without accidentally creating a URL.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">2. A good starting structure</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">leannextjs/
+|- app/                      &lt;- ROUTES ONLY
+|  |- layout.tsx             root layout (html, body, fonts)
+|  |- page.tsx               -&gt; /
+|  |- globals.css            global styles, imported by layout
+|  |- favicon.ico            special file: becomes the tab icon
+|  |- blog/
+|     |- page.tsx            -&gt; /blog
+|     |- loading.tsx         spinner while /blog loads
+|     |- error.tsx           error screen for /blog
+|     |- [slug]/page.tsx     -&gt; /blog/anything
+|
+|- components/               &lt;- reusable UI (Button, Card, Navbar)
+|- lib/                      &lt;- helpers, data fetching, utils
+|- public/                   &lt;- static files served at /
+|  |- logo.svg               -&gt; http://localhost:3000/logo.svg
+|  |- images/hero.jpg        -&gt; /images/hero.jpg
+|
+|- next.config.ts
+|- tsconfig.json
+|- package.json</pre>
+    <p style="margin:0 0 16px; color:#55554f; font-size:14.5px;">The names <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">components/</code> and <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">lib/</code> mean <strong>nothing</strong> to Next.js &mdash; they are pure convention. Call them <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">ui/</code> and <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">utils/</code> if you like. Just be consistent.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">3. Three special folder names</h3>
+    <table style="width:100%; border-collapse:collapse; margin:0 0 16px; font-size:14.5px;">
+      <tr style="background:#f0f0ec;">
+        <th style="text-align:left; padding:8px 10px; border:1px solid #e4e4df; width:150px;">Pattern</th>
+        <th style="text-align:left; padding:8px 10px; border:1px solid #e4e4df;">What it does</th>
+      </tr>
+      <tr>
+        <td style="padding:8px 10px; border:1px solid #e4e4df; font-family:ui-monospace,Consolas,monospace;">(marketing)</td>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;"><strong>Route group.</strong> Groups routes <em>without</em> appearing in the URL. <code>app/(marketing)/pricing/page.tsx</code> is served at <code>/pricing</code>, not <code>/marketing/pricing</code>. Bonus: each group can have its own <code>layout.tsx</code>.</td>
+      </tr>
+      <tr>
+        <td style="padding:8px 10px; border:1px solid #e4e4df; font-family:ui-monospace,Consolas,monospace;">_components</td>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;"><strong>Private folder.</strong> A leading underscore means "router, ignore me and everything inside me". Not strictly needed (colocation already works), but it makes intent obvious and avoids clashing with future Next.js file names.</td>
+      </tr>
+      <tr>
+        <td style="padding:8px 10px; border:1px solid #e4e4df; font-family:ui-monospace,Consolas,monospace;">[slug]</td>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;"><strong>Dynamic segment.</strong> Matches any value and hands it to your page via the <code>params</code> prop.</td>
+      </tr>
+    </table>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">4. Where each kind of asset goes</h3>
+    <table style="width:100%; border-collapse:collapse; margin:0 0 16px; font-size:14.5px;">
+      <tr style="background:#f0f0ec;">
+        <th style="text-align:left; padding:8px 10px; border:1px solid #e4e4df; width:230px;">Asset</th>
+        <th style="text-align:left; padding:8px 10px; border:1px solid #e4e4df;">Put it here</th>
+      </tr>
+      <tr><td style="padding:8px 10px; border:1px solid #e4e4df;">Photos, logos, SVGs, PDFs</td><td style="padding:8px 10px; border:1px solid #e4e4df;"><code>public/</code> &mdash; reference it as <code>/logo.svg</code></td></tr>
+      <tr><td style="padding:8px 10px; border:1px solid #e4e4df;">Global CSS</td><td style="padding:8px 10px; border:1px solid #e4e4df;"><code>app/globals.css</code>, imported <strong>once</strong> in <code>app/layout.tsx</code></td></tr>
+      <tr><td style="padding:8px 10px; border:1px solid #e4e4df;">Fonts</td><td style="padding:8px 10px; border:1px solid #e4e4df;">No files at all &mdash; use <code>next/font/google</code> in the layout</td></tr>
+      <tr><td style="padding:8px 10px; border:1px solid #e4e4df;">favicon, robots, sitemap, social preview image</td><td style="padding:8px 10px; border:1px solid #e4e4df;"><strong>Inside <code>app/</code></strong> as <code>favicon.ico</code>, <code>robots.txt</code>, <code>sitemap.ts</code>, <code>opengraph-image.png</code>. Next.js wires them into the HTML for you.</td></tr>
+      <tr><td style="padding:8px 10px; border:1px solid #e4e4df;">An image used by exactly one page</td><td style="padding:8px 10px; border:1px solid #e4e4df;">Right next to that page and imported directly &mdash; colocation allows it</td></tr>
+    </table>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">5. Using an image &mdash; the two ways</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">import Image from 'next/image'
+
+// A) from public/ - path starts at "/", YOU supply the size
+&lt;Image src="/images/hero.jpg" alt="Hero" width={800} height={400} /&gt;
+
+// B) static import - Next reads the real size for you
+import hero from './hero.jpg'
+&lt;Image src={hero} alt="Hero" placeholder="blur" /&gt;</pre>
+    <p style="margin:0 0 16px;">Prefer <strong>B</strong> when you can: the correct <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">width</code>/<code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">height</code> come for free and you get a blur-up placeholder. Either way, <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&lt;Image&gt;</code> auto-converts to WebP, lazy-loads, and serves a device-appropriate size &mdash; things a plain <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&lt;img&gt;</code> will never do.</p>
+    <p style="margin:0 0 16px; color:#55554f; font-size:14.5px;"><strong>Why width and height are mandatory:</strong> the browser reserves the space <em>before</em> the image arrives, so your page doesn't jump around while loading. That jump has a name &mdash; layout shift &mdash; and Google measures it.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">6. Fonts, the Next.js way</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">// app/layout.tsx
+import { Geist } from 'next/font/google'
+
+const geist = Geist({ subsets: ['latin'] })
+
+export default function RootLayout({ children }) {
+  return (
+    &lt;html lang="en" className={geist.className}&gt;
+      &lt;body&gt;{children}&lt;/body&gt;
+    &lt;/html&gt;
+  )
+}</pre>
+    <p style="margin:0 0 16px;">Next downloads the font at build time and <strong>self-hosts</strong> it. No request to Google at runtime &rarr; faster, more private, no font-swap flicker. Never hand-write a Google Fonts <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&lt;link&gt;</code> tag.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">7. Beginner traps</h3>
+    <div style="border-left:3px solid #d97706; background:#fffbeb; padding:14px 18px; border-radius:0 6px 6px 0; margin:0 0 16px;">
+      <ul style="margin:0; padding-left:20px;">
+        <li>Putting <code>favicon.ico</code> in <code>public/</code>. In the App Router it belongs in <code>app/</code>.</li>
+        <li>Writing <code>src="./public/logo.svg"</code>. The word <code>public</code> is <strong>never</strong> part of the URL &mdash; it's just <code>/logo.svg</code>.</li>
+        <li>Fearing that <code>app/components/</code> becomes a route. It can't. No <code>page.tsx</code>, no route.</li>
+        <li>Copy-pasting tutorials that use <code>pages/</code>, <code>getServerSideProps</code> or <code>_app.js</code>. That's the <em>old</em> Pages Router. You're on the App Router.</li>
+        <li>Building a deep <code>features/...</code> hierarchy on day one. Start flat; split a folder only once it genuinely annoys you.</li>
+      </ul>
+    </div>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">8. What about <code style="font-size:15px;">src/</code>?</h3>
+    <p style="margin:0 0 16px;">Optional. Moving <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">app/</code>, <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">components/</code> and <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">lib/</code> into a <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">src/</code> folder keeps the root tidy on bigger projects. <strong><code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">public/</code>, <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">next.config.ts</code>, <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">tsconfig.json</code> and <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">.env</code> files always stay at the root.</strong> This project doesn't use <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">src/</code> &mdash; for learning, that's one less layer to think about.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">9. Free bonus: the <code style="font-size:15px;">@/</code> shortcut</h3>
+    <p style="margin:0 0 8px;">Your <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">tsconfig.json</code> already maps <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">@/*</code> to the project root, so you never need <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">../../../</code>:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">import Button from '@/components/Button'     // clean, survives a move
+import Button from '../../components/Button' // fragile</pre>
+
+    <div style="border-left:3px solid #2563eb; background:#eff6ff; padding:14px 18px; border-radius:0 6px 6px 0; margin:20px 0 0;">
+      <strong>Next step:</strong> create <code>app/about/page.tsx</code> and visit <code>/about</code>. Then add <code>components/Navbar.tsx</code> and render it from <code>app/layout.tsx</code>. Those two moves let you feel both rules at once.
+    </div>
+
+    <p style="margin:18px 0 0; font-size:13px; color:#8a8a84;">Sources: bundled docs <code>node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md</code>, <code>.../12-images.md</code>, <code>.../13-fonts.md</code>, <code>.../03-file-conventions/public-folder.md</code>, <code>.../src-folder.md</code> (Next.js 16.3.5).</p>
+
+  </section>
+
+  <p style="text-align:center; color:#a0a09a; font-size:13px; margin:40px 0 0;">Written while learning &mdash; Next.js 16.3.5</p>
+
+</div>
+</body>
+</html>
