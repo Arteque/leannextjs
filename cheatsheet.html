@@ -16,6 +16,301 @@
 
   <section style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px;">
 
+    <div style="font-size:12px; color:#8a8a84; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">#3 &middot; 2026-09-20 &middot; Hydration</div>
+    <h2 style="margin:0 0 18px; font-size:21px; color:#111;">Why are <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:17px;">suppressHydrationWarning</code> and <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:17px;">data-lt-installed</code> important?</h2>
+
+    <p style="margin:0 0 16px;"><strong>One-sentence answer:</strong> they are not equally important &mdash; <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">suppressHydrationWarning</code> is a legitimate (if optional) fix, and <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">data-lt-installed="true"</code> is a mistake that should be deleted.</p>
+
+    <div style="background:#fff8e6; border-left:4px solid #e0a800; padding:14px 18px; border-radius:0 6px 6px 0; margin:0 0 20px;">
+      <strong>The premise is worth correcting first.</strong> Neither line is required for the app to work. Both exist to silence a <em>development-only warning</em> caused by a browser extension on your own machine &mdash; not by your code.
+    </div>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">1. First: what is hydration?</h3>
+    <p style="margin:0 0 16px;">Next.js renders your page to plain HTML <strong>on the server</strong> and sends that to the browser, so the user sees content immediately. But plain HTML has no behaviour &mdash; no click handlers, no state. So React then runs the same components again <strong>in the browser</strong>, walks over the HTML the server sent, and attaches all the interactivity to it. That second pass is called <strong>hydration</strong>.</p>
+    <p style="margin:0 0 16px;">For hydration to work, React needs the HTML in the page to <strong>match what it is about to render</strong>. If they differ, React does not know which one is correct, so it warns &mdash; a <strong>hydration mismatch</strong>.</p>
+    <div style="background:#f7f7f5; border:1px solid #e4e4df; border-radius:8px; padding:14px 18px; margin:0 0 16px; font-size:14.5px; color:#44443f;">
+      <em>Analogy:</em> the server mails you a printed, filled-in form. React arrives later with its own copy and checks them line by line before it wires up the buttons. If a single line differs, React stops and says &ldquo;someone changed this form&rdquo;.
+    </div>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">2. Where <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:15px;">data-lt-installed</code> actually comes from</h3>
+    <p style="margin:0 0 16px;"><strong>You did not write it &mdash; and neither did Next.js.</strong> <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">lt</code> stands for <strong>LanguageTool</strong>, the grammar-checker browser extension. When you have it installed, it stamps <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">data-lt-installed="true"</code> onto the <code style="font-family:ui-monospace,Consolas,monospace;">&lt;html&gt;</code> tag of every page you visit.</p>
+    <p style="margin:0 0 12px;">The timing is what causes the trouble:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">1. Server sends:      &lt;html lang="en" class="..."&gt;
+2. Extension edits:   &lt;html lang="en" class="..." data-lt-installed="true"&gt;
+3. React hydrates:    expects step 1, finds step 2  -&gt;  MISMATCH</pre>
+    <p style="margin:0 0 16px;">The extension slips in during the gap between the HTML arriving and React hydrating. React then reports an extra attribute it never rendered.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">3. Why hardcoding it is the wrong fix</h3>
+    <p style="margin:0 0 12px;">Adding <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">data-lt-installed="true"</code> to your JSX does make the warning go away &mdash; by making the server output match what the extension produces. It is a clever guess, but it backfires four ways:</p>
+    <ul style="margin:0 0 16px; padding-left:22px;">
+      <li><strong>It ships a lie to every visitor.</strong> Everyone now receives HTML claiming LanguageTool is installed, including people who have never heard of it.</li>
+      <li><strong>It fixes exactly one extension.</strong> Grammarly injects <code style="font-family:ui-monospace,Consolas,monospace;">data-gr-ext-installed</code> and <code style="font-family:ui-monospace,Consolas,monospace;">data-new-gr-c-s-check-loaded</code>. Dark Reader, password managers and ad blockers each add their own. You would be playing whack-a-mole forever.</li>
+      <li><strong>It breaks in the other direction.</strong> Uninstall LanguageTool and now <em>your</em> HTML has an attribute the browser does not &mdash; a brand-new mismatch.</li>
+      <li><strong>It solves a problem your users mostly do not have.</strong> This warning appears in <em>your</em> dev console because of <em>your</em> browser. Open the site in incognito and it vanishes.</li>
+    </ul>
+    <p style="margin:0 0 16px; color:#55554f; font-size:14.5px;"><strong>Quick check:</strong> open the page in an incognito window (extensions off). If the warning disappears, an extension caused it &mdash; not your code.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">4. Why <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:15px;">suppressHydrationWarning</code> <em>is</em> the right fix here</h3>
+    <p style="margin:0 0 12px;">It tells React, for one element only: <strong>&ldquo;do not compare this one &mdash; keep whatever is already in the DOM.&rdquo;</strong> From the Next.js guide:</p>
+    <div style="background:#f7f7f5; border-left:4px solid #c4c4bd; padding:12px 18px; margin:0 0 16px; font-size:14.5px; color:#44443f;">
+      With <code style="font-family:ui-monospace,Consolas,monospace;">suppressHydrationWarning</code>: React keeps whatever is in the DOM and discards the client&rsquo;s output for that element. The DOM wins.
+    </div>
+    <p style="margin:0 0 12px;">The property that makes it <strong>safe</strong> rather than reckless is this: <strong>it only works one level deep.</strong> Putting it on <code style="font-family:ui-monospace,Consolas,monospace;">&lt;html&gt;</code> covers the <code style="font-family:ui-monospace,Consolas,monospace;">&lt;html&gt;</code> tag&rsquo;s own attributes &mdash; which is precisely the extension&rsquo;s blast radius &mdash; and does <strong>not</strong> silence mismatches inside your actual components. Real bugs still get reported.</p>
+    <p style="margin:0 0 16px;">That is the whole reason this pattern is so common on the root layout, and why libraries like <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">next-themes</code> tell you to add it there.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">5. But the syntax is wrong</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">suppressHydrationWarning="true"   // string "true"  -&gt; TYPE ERROR
+suppressHydrationWarning={true}   // boolean true    -&gt; works, but verbose
+suppressHydrationWarning          // boolean true    -&gt; correct</pre>
+    <p style="margin:0 0 16px;">In JSX, <strong>a bare prop name already means <code style="font-family:ui-monospace,Consolas,monospace;">true</code></strong>. Quotes make it a string, and this prop wants a boolean. TypeScript flags it:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">app/layout.tsx(25,7): error TS2322: Type 'string' is not assignable
+to type 'boolean | undefined'.</pre>
+    <p style="margin:0 0 16px; color:#55554f; font-size:14.5px;">This catches people out because in plain HTML <code style="font-family:ui-monospace,Consolas,monospace;">disabled="true"</code> works fine. JSX is JavaScript, not HTML &mdash; quotes there really do mean a string.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">6. What to write instead</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">&lt;html
+  lang="en"
+  className={`${oswald.variable} ${libreFranklin.variable} h-full antialiased`}
+  suppressHydrationWarning
+&gt;
+  &lt;body className="min-h-full flex flex-col font-body"&gt;{children}&lt;/body&gt;
+&lt;/html&gt;</pre>
+    <p style="margin:0 0 16px;">One bare prop. <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">data-lt-installed</code> is gone.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">7. When <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:15px;">suppressHydrationWarning</code> is <em>not</em> okay</h3>
+    <p style="margin:0 0 12px;">This is the part that matters long-term. It is an <strong>escape hatch, not a fix</strong>. Reaching for it whenever a hydration warning appears hides real bugs.</p>
+    <table style="width:100%; border-collapse:collapse; margin:0 0 16px; font-size:14.5px;">
+      <tr style="background:#f0f0ec;">
+        <th style="text-align:left; padding:8px 10px; border:1px solid #e4e4df; width:50%;">Legitimate</th>
+        <th style="text-align:left; padding:8px 10px; border:1px solid #e4e4df;">Hiding a bug</th>
+      </tr>
+      <tr>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">Browser extensions editing <code style="font-family:ui-monospace,Consolas,monospace;">&lt;html&gt;</code> or <code style="font-family:ui-monospace,Consolas,monospace;">&lt;body&gt;</code></td>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;"><code style="font-family:ui-monospace,Consolas,monospace;">new Date()</code> or <code style="font-family:ui-monospace,Consolas,monospace;">toLocaleDateString()</code> rendered directly</td>
+      </tr>
+      <tr>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">A value you deliberately corrected with an inline script before first paint</td>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;"><code style="font-family:ui-monospace,Consolas,monospace;">Math.random()</code> in render</td>
+      </tr>
+      <tr>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">Theme class read from <code style="font-family:ui-monospace,Consolas,monospace;">localStorage</code> by a pre-hydration script</td>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">Reading <code style="font-family:ui-monospace,Consolas,monospace;">localStorage</code> or <code style="font-family:ui-monospace,Consolas,monospace;">window</code> during render</td>
+      </tr>
+      <tr>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">&mdash;</td>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">Invalid HTML nesting, e.g. a <code style="font-family:ui-monospace,Consolas,monospace;">&lt;div&gt;</code> inside a <code style="font-family:ui-monospace,Consolas,monospace;">&lt;p&gt;</code></td>
+      </tr>
+    </table>
+    <p style="margin:0 0 16px;">The pattern: if something <strong>outside React</strong> legitimately changed the DOM before hydration, suppressing is correct. If <strong>your own component</strong> renders differently on server and client, suppressing just papers over it &mdash; the user still sees the wrong value, now silently.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">8. Rule of thumb</h3>
+    <div style="background:#f0f7f0; border-left:4px solid #4d9a4d; padding:14px 18px; border-radius:0 6px 6px 0; margin:0 0 16px;">
+      Put <code style="background:#e0efe0; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">suppressHydrationWarning</code> on <code style="font-family:ui-monospace,Consolas,monospace;">&lt;html&gt;</code> once and never think about it again. Anywhere else, treat each use as something you have to justify out loud.
+    </div>
+
+    <div style="background:#eef4ff; border-left:4px solid #4a7fd4; padding:14px 18px; border-radius:0 6px 6px 0; margin:24px 0 0;">
+      <strong>Next step:</strong> read <code style="background:#e2eafc; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">node_modules/next/dist/docs/01-app/02-guides/preventing-flash-before-hydration.md</code>. It works through the honest fix for a real mismatch (dates and dark mode) using an inline script that runs before the first paint &mdash; the technique you reach for when suppressing would be cheating.
+    </div>
+
+    <p style="margin:20px 0 0; font-size:13px; color:#8a8a84;">Verified against the bundled guide <code style="font-family:ui-monospace,Consolas,monospace;">01-app/02-guides/preventing-flash-before-hydration.md</code> and the React <code style="font-family:ui-monospace,Consolas,monospace;">hydrateRoot</code> / common-components reference &middot; Next.js 16.3.5, React 19.2.8.</p>
+
+  </section>
+
+
+  <section style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px;">
+
+    <div style="font-size:12px; color:#8a8a84; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">#2 &middot; 2026-09-20 &middot; Fonts</div>
+    <h2 style="margin:0 0 18px; font-size:21px; color:#111;">How do I add a font to <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:18px;">layout.tsx</code>?</h2>
+
+    <p style="margin:0 0 16px;"><strong>One-sentence answer:</strong> import the font from <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">next/font/google</code>, call it as a function at the <em>top level</em> of the file, then put the object it returns onto an element &mdash; either <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">font.className</code> (applies it) or <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">font.variable</code> (declares a CSS variable you use later).</p>
+
+    <div style="background:#fff8e6; border-left:4px solid #e0a800; padding:14px 18px; border-radius:0 6px 6px 0; margin:0 0 20px;">
+      <strong>Heads up &mdash; your file already has three problems.</strong> The imports are there, but nothing actually renders in those fonts yet, and it will not compile. Details in section 3.
+    </div>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">1. Why <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">next/font</code> exists at all</h3>
+    <p style="margin:0 0 16px;">The old way to use a Google Font was a <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&lt;link&gt;</code> tag pointing at <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">fonts.googleapis.com</code>. Two things go wrong with that: the browser has to make a round trip to Google before it knows what the text looks like, so text visibly jumps when the font lands (&ldquo;layout shift&rdquo;), and every visitor&rsquo;s IP address gets sent to Google.</p>
+    <p style="margin:0 0 16px;"><code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">next/font</code> downloads the font file <strong>at build time</strong> and serves it from your own domain. No request to Google ever leaves the browser. It also measures the font and generates a matched fallback, so the jump is gone.</p>
+    <p style="margin:0 0 16px; color:#55554f; font-size:14.5px;"><em>Analogy:</em> instead of ordering a book from a warehouse every time someone walks in, you keep a copy on your own shelf.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">2. The two ways to apply a font</h3>
+    <p style="margin:0 0 12px;">The function returns an object. You use one of two properties on it:</p>
+    <table style="width:100%; border-collapse:collapse; margin:0 0 16px; font-size:14.5px;">
+      <tr style="background:#f0f0ec;">
+        <th style="text-align:left; padding:8px 10px; border:1px solid #e4e4df; width:130px;">Property</th>
+        <th style="text-align:left; padding:8px 10px; border:1px solid #e4e4df;">What it does</th>
+        <th style="text-align:left; padding:8px 10px; border:1px solid #e4e4df; width:170px;">Use when</th>
+      </tr>
+      <tr>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;"><code style="font-family:ui-monospace,Consolas,monospace;">.className</code></td>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">A ready-made CSS class that <strong>sets <code style="font-family:ui-monospace,Consolas,monospace;">font-family</code> right now</strong>. Put it on an element and that element uses the font.</td>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">You have one font for the whole site.</td>
+      </tr>
+      <tr>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;"><code style="font-family:ui-monospace,Consolas,monospace;">.variable</code></td>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">A class that only <strong>declares a CSS variable</strong> (e.g. <code style="font-family:ui-monospace,Consolas,monospace;">--font-body</code>). By itself it changes <em>nothing</em> visually &mdash; you still have to consume the variable in CSS.</td>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">You have two or more fonts and want to switch between them (headings vs body).</td>
+      </tr>
+    </table>
+    <p style="margin:0 0 16px;">You picked <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">.variable</code>, which is the right call for two fonts &mdash; but it is the half that needs a second step, and that step is missing.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">3. The three problems in your current file</h3>
+
+    <p style="margin:0 0 8px;"><strong style="color:#b02a2a;">(a) <code style="font-family:ui-monospace,Consolas,monospace;">libre_franklin</code> should be <code style="font-family:ui-monospace,Consolas,monospace;">Libre_Franklin</code>.</strong></p>
+    <p style="margin:0 0 16px;">The rule for Google font names: <strong>keep the capitals exactly as Google writes them, and replace each space with an underscore.</strong> &ldquo;Libre Franklin&rdquo; &rarr; <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">Libre_Franklin</code>. &ldquo;Roboto Mono&rdquo; &rarr; <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">Roboto_Mono</code>. TypeScript catches this one for you:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">app/layout.tsx(2,18): error TS2724: '"next/font/google"' has no exported
+member named 'libre_franklin'. Did you mean 'Libre_Franklin'?</pre>
+
+    <p style="margin:0 0 8px;"><strong style="color:#b02a2a;">(b) <code style="font-family:ui-monospace,Consolas,monospace;">suppressHydrationWarning="true"</code> should be plain <code style="font-family:ui-monospace,Consolas,monospace;">suppressHydrationWarning</code>.</strong></p>
+    <p style="margin:0 0 16px;">It is a boolean prop. In JSX, writing a bare prop name means <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">true</code>. Writing <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">="true"</code> passes the <em>string</em> <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">"true"</code>, which is a type error. (If you needed a real boolean expression you would write <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">{true}</code> with braces.)</p>
+
+    <p style="margin:0 0 8px;"><strong style="color:#b02a2a;">(c) <code style="font-family:ui-monospace,Consolas,monospace;">globals.css</code> still points at the fonts that <em>used</em> to be there.</strong></p>
+    <p style="margin:0 0 12px;">This is the big one, and it is why nothing looks different. Your CSS says:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 12px;">--font-sans: var(--font-geist-sans);   /* nothing declares this any more */
+--font-mono: var(--font-geist-mono);   /* nor this */</pre>
+    <p style="margin:0 0 12px;">Those were from the starter template&rsquo;s Geist fonts. You swapped the fonts in <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">layout.tsx</code> but the CSS is still asking for the old variable names, so it resolves to nothing. And on top of that:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">body {
+  font-family: Arial, Helvetica, sans-serif;   /* &lt;- hard-coded, wins anyway */
+}</pre>
+    <p style="margin:0 0 16px;">So even if the variable name were correct, this line would override it on <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&lt;body&gt;</code>. <strong>This exact combination &mdash; a stale variable name plus a leftover hard-coded <code style="font-family:ui-monospace,Consolas,monospace;">font-family</code> &mdash; is the single most common reason a beginner&rsquo;s font &ldquo;does not work&rdquo; with no error message anywhere.</strong></p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">4. The corrected <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:15px;">app/layout.tsx</code></h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">import type { Metadata } from "next";
+import { Oswald, Libre_Franklin } from "next/font/google";
+import "./globals.css";
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-heading",
+});
+
+const libreFranklin = Libre_Franklin({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-body",
+});
+
+export const metadata: Metadata = {
+  title: "Create Next App",
+  description: "Generated by create next app",
+};
+
+export default function RootLayout({ children }: LayoutProps&lt;"/"&gt;) {
+  return (
+    &lt;html
+      lang="en"
+      className={`${oswald.variable} ${libreFranklin.variable} h-full antialiased`}
+      suppressHydrationWarning
+    &gt;
+      &lt;body className="min-h-full flex flex-col font-body"&gt;{children}&lt;/body&gt;
+    &lt;/html&gt;
+  );
+}</pre>
+    <p style="margin:0 0 10px;">Line by line, the things worth knowing:</p>
+    <ul style="margin:0 0 16px; padding-left:22px;">
+      <li><strong>The call must be at the top level of the module</strong> &mdash; not inside the component function. Next.js reads it at build time to download the font; it cannot do that if the call only happens at render.</li>
+      <li><strong><code style="font-family:ui-monospace,Consolas,monospace;">subsets: ["latin"]</code></strong> &mdash; which alphabets to ship. Latin only keeps the file small. Add <code style="font-family:ui-monospace,Consolas,monospace;">"latin-ext"</code> if you need accented characters beyond basic French/German.</li>
+      <li><strong><code style="font-family:ui-monospace,Consolas,monospace;">display: "swap"</code></strong> &mdash; show fallback text immediately, swap in the real font when ready. The docs recommend it; without it the text can be invisible for a moment.</li>
+      <li><strong>No <code style="font-family:ui-monospace,Consolas,monospace;">weight</code> needed.</strong> Both Oswald and Libre Franklin are <em>variable fonts</em> &mdash; one file contains every weight from thin to bold. For a non-variable font TypeScript will force you to pass <code style="font-family:ui-monospace,Consolas,monospace;">weight</code>, so you will find out.</li>
+      <li><strong>I renamed the CSS variables by <em>role</em></strong> (<code style="font-family:ui-monospace,Consolas,monospace;">--font-heading</code>, <code style="font-family:ui-monospace,Consolas,monospace;">--font-body</code>) rather than by family. Your old name <code style="font-family:ui-monospace,Consolas,monospace;">--font-oswald-sans</code> was slightly misleading &mdash; Oswald is a condensed display face for headings, not a body sans. Naming by role means swapping the family later touches one line.</li>
+      <li><strong>The variable classes go on <code style="font-family:ui-monospace,Consolas,monospace;">&lt;html&gt;</code></strong> so the variables exist everywhere. <code style="font-family:ui-monospace,Consolas,monospace;">&lt;body&gt;</code> works too &mdash; the docs say either is fine.</li>
+    </ul>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">5. The missing half: wire it up in <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:15px;">app/globals.css</code></h3>
+    <p style="margin:0 0 12px;">You are on Tailwind v4, where there is no <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">tailwind.config.js</code> any more &mdash; theme values are declared in CSS inside an <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">@theme</code> block. Naming a font there <em>creates a matching utility class</em>: <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">--font-body</code> gives you <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">font-body</code>.</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-body: var(--font-body);         /* -&gt; font-body    (Libre Franklin) */
+  --font-heading: var(--font-heading);   /* -&gt; font-heading (Oswald)         */
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  /* delete the hard-coded font-family: Arial line that was here */
+}</pre>
+    <p style="margin:0 0 16px; color:#55554f; font-size:14.5px;">The <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">inline</code> keyword tells Tailwind to paste the variable reference straight through rather than resolving it once at build time &mdash; which is what you want here, because the value is supplied at runtime by the class sitting on <code style="font-family:ui-monospace,Consolas,monospace;">&lt;html&gt;</code>.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">6. Using them</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">// app/page.tsx
+export default function Home() {
+  return (
+    &lt;main className="p-8"&gt;
+      &lt;h1 className="font-heading text-5xl uppercase tracking-wide"&gt;
+        Oswald headline
+      &lt;/h1&gt;
+      &lt;p className="mt-4 text-lg"&gt;
+        Body text, inherited from the body tag.
+      &lt;/p&gt;
+    &lt;/main&gt;
+  );
+}</pre>
+    <p style="margin:0 0 16px;"><code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">font-body</code> sits on <code style="font-family:ui-monospace,Consolas,monospace;">&lt;body&gt;</code> and every child inherits it. Headings opt out with <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">font-heading</code>.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">7. The single-font shortcut</h3>
+    <p style="margin:0 0 12px;">If you only ever want one font, skip variables and CSS entirely:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">import { Libre_Franklin } from "next/font/google";
+
+const libreFranklin = Libre_Franklin({ subsets: ["latin"] });
+
+export default function RootLayout({ children }: LayoutProps&lt;"/"&gt;) {
+  return (
+    &lt;html lang="en" className={libreFranklin.className}&gt;
+      &lt;body&gt;{children}&lt;/body&gt;
+    &lt;/html&gt;
+  );
+}</pre>
+    <p style="margin:0 0 16px; color:#55554f; font-size:14.5px;">Note <code style="font-family:ui-monospace,Consolas,monospace;">.className</code>, not <code style="font-family:ui-monospace,Consolas,monospace;">.variable</code>. Two lines, done. You would still want to delete the <code style="font-family:ui-monospace,Consolas,monospace;">font-family: Arial</code> rule.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">8. Beginner mistakes, and how to spot each one</h3>
+    <table style="width:100%; border-collapse:collapse; margin:0 0 16px; font-size:14.5px;">
+      <tr style="background:#f0f0ec;">
+        <th style="text-align:left; padding:8px 10px; border:1px solid #e4e4df; width:44%;">Mistake</th>
+        <th style="text-align:left; padding:8px 10px; border:1px solid #e4e4df;">Symptom</th>
+      </tr>
+      <tr>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">Used <code style="font-family:ui-monospace,Consolas,monospace;">.variable</code> but never consumed the variable</td>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">No error at all, font just never appears. <strong>Your case.</strong></td>
+      </tr>
+      <tr>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">Left a hard-coded <code style="font-family:ui-monospace,Consolas,monospace;">font-family</code> on <code style="font-family:ui-monospace,Consolas,monospace;">body</code></td>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">Variable is correct, text still wrong. DevTools shows your font crossed out.</td>
+      </tr>
+      <tr>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">Called the font inside the component</td>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">Build error: font loaders must be called at module scope.</td>
+      </tr>
+      <tr>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">Wrong capitalisation, or a space instead of <code style="font-family:ui-monospace,Consolas,monospace;">_</code></td>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">TypeScript error, usually with a &ldquo;Did you mean&hellip;?&rdquo; hint.</td>
+      </tr>
+      <tr>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">Non-variable font without <code style="font-family:ui-monospace,Consolas,monospace;">weight</code></td>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">TypeScript says the <code style="font-family:ui-monospace,Consolas,monospace;">weight</code> property is missing.</td>
+      </tr>
+      <tr>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">Also kept a <code style="font-family:ui-monospace,Consolas,monospace;">&lt;link&gt;</code> to Google Fonts in <code style="font-family:ui-monospace,Consolas,monospace;">&lt;head&gt;</code></td>
+        <td style="padding:8px 10px; border:1px solid #e4e4df;">Works, but downloads the font twice and leaks visitor IPs &mdash; the exact thing <code style="font-family:ui-monospace,Consolas,monospace;">next/font</code> prevents.</td>
+      </tr>
+    </table>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">9. How to check it actually worked</h3>
+    <p style="margin:0 0 16px;">Run <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">npx tsc --noEmit</code> for the name and type errors, then open the page, right-click some text &rarr; Inspect &rarr; <strong>Computed</strong> tab &rarr; look at <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">font-family</code>. It should read something like <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">__Libre_Franklin_abc123</code>. If it still says <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">Arial</code>, the CSS wiring is still wrong.</p>
+
+    <div style="background:#eef4ff; border-left:4px solid #4a7fd4; padding:14px 18px; border-radius:0 6px 6px 0; margin:24px 0 0;">
+      <strong>Next step:</strong> add a local font file with <code style="background:#e2eafc; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">next/font/local</code> &mdash; same <code style="font-family:ui-monospace,Consolas,monospace;">.className</code> / <code style="font-family:ui-monospace,Consolas,monospace;">.variable</code> idea, but you point <code style="font-family:ui-monospace,Consolas,monospace;">src</code> at a <code style="font-family:ui-monospace,Consolas,monospace;">.woff2</code> inside your project. That is how you would ship a paid or custom typeface.
+    </div>
+
+    <p style="margin:20px 0 0; font-size:13px; color:#8a8a84;">Verified against the bundled docs in <code style="font-family:ui-monospace,Consolas,monospace;">node_modules/next/dist/docs/01-app/01-getting-started/13-fonts.md</code> and <code style="font-family:ui-monospace,Consolas,monospace;">.../03-api-reference/02-components/font.md</code> &middot; Next.js 16.3.5, React 19.2.8, Tailwind CSS v4.</p>
+
+  </section>
+
+
+  <section style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px;">
+
     <div style="font-size:12px; color:#8a8a84; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">#1 &middot; 2026-09-20 &middot; Project structure</div>
     <h2 style="margin:0 0 18px; font-size:21px; color:#111;">How do I organise the folder structure and assets in Next.js?</h2>
 
