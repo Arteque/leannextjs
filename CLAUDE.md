@@ -47,6 +47,16 @@ After every question, append a new Q&A entry to `cheatsheet.html` in the project
 - Newest entry at the top so the latest lesson is easy to find.
 - Keep it readable: generous line height, a light background, code in a monospace block
   with a tinted background.
+- **Keep a contents nav at the top of the file** (`<nav id="contents">`), above the
+  entries: a plain list of links, one per entry, newest first, each showing the entry
+  number, the topic and the question. Every new entry must get a row added — the nav
+  always lists all of them.
+- For those links to work, each entry needs `id="entry-N"` on its `<section>` (matching
+  its number) and a `↑ Back to contents` link pointing at `#contents` just before its
+  closing `</section>`.
+- Keep the fixed `↑` go-to-top button in the bottom-right corner (a `position:fixed`
+  link to `#top`, placed just before `</body>`), and keep `id="top"` on the page
+  container and `scroll-behavior:smooth` on `<html>`.
 
 Also give the answer in the chat reply — the file is the archive, not a substitute.
 

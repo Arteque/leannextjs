@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Oswald, Libre_Franklin } from "next/font/google";
 import "./globals.css";
 
+import LinkTag from "@/components/layout/shared/LinkTag";
+import HeaderMain from "@/components/layout/header/HeaderMain";
+
 const oswaldSans = Oswald({
   variable: "--font-oswald-sans",
   subsets: ["latin"],
@@ -23,10 +26,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${oswaldSans.variable} ${librefranklin.variable} h-full antialiased`}
       suppressHydrationWarning
-      cz-shortcut-listen="true"
-      
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        <div className="lg:flex lg:h-screen">
+          <HeaderMain />
+          <main id="main" className="bg-background/10">
+            {children}
+          </main>
+        </div>
+        <footer id="footer"></footer>
+      </body>
     </html>
   );
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-behavior:smooth;">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,14 +7,986 @@
 </head>
 <body style="margin:0; padding:32px 16px; background:#f7f7f5; color:#1c1c1a; font-family:-apple-system,Segoe UI,Roboto,sans-serif; line-height:1.7;">
 
-<div style="max-width:780px; margin:0 auto;">
+<div id="top" style="max-width:780px; margin:0 auto;">
 
   <h1 style="margin:0 0 4px; font-size:28px; letter-spacing:-0.5px;">Next.js Cheatsheet</h1>
   <p style="margin:0 0 32px; color:#6b6b66; font-size:14px;">My learning log &middot; Next.js 16.3.5 &middot; React 19.2.8 &middot; newest entry first</p>
 
+
+  <nav id="contents" style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:20px 20px 16px; margin-bottom:32px; scroll-margin-top:20px;">
+    <div style="font-size:12px; color:#8a8a84; letter-spacing:1px; text-transform:uppercase; margin:0 0 12px 10px;">Contents &middot; 12 entries &middot; newest first</div>
+  <ol style="margin:0; padding:0; list-style:none;">
+
+  <!-- NEW TOC LINKS GO DIRECTLY BELOW THIS LINE -->
+
+    <li style="margin:0 0 2px;">
+      <a href="#entry-12" style="display:flex; gap:10px; align-items:baseline; padding:7px 10px; border-radius:6px; color:#1c1c1a; text-decoration:none; background:transparent;">
+        <span style="flex:none; width:26px; font-family:ui-monospace,Consolas,monospace; font-size:12px; color:#a0a09a;">12</span>
+        <span style="flex:none; width:135px; font-size:12px; color:#8a8a84;">Pages</span>
+        <span style="font-size:14px; color:#2563eb;">Is a subpage like /about just a React component, or does it need special syntax?</span>
+      </a>
+    </li>
+
+    <li style="margin:0 0 2px;">
+      <a href="#entry-11" style="display:flex; gap:10px; align-items:baseline; padding:7px 10px; border-radius:6px; color:#1c1c1a; text-decoration:none; background:transparent;">
+        <span style="flex:none; width:26px; font-family:ui-monospace,Consolas,monospace; font-size:12px; color:#a0a09a;">11</span>
+        <span style="flex:none; width:135px; font-size:12px; color:#8a8a84;">Routing standards</span>
+        <span style="font-size:14px; color:#2563eb;">What are the industry standards for routing in Next.js?</span>
+      </a>
+    </li>
+    <li style="margin:0 0 2px;">
+      <a href="#entry-10" style="display:flex; gap:10px; align-items:baseline; padding:7px 10px; border-radius:6px; color:#1c1c1a; text-decoration:none; background:transparent;">
+        <span style="flex:none; width:26px; font-family:ui-monospace,Consolas,monospace; font-size:12px; color:#a0a09a;">10</span>
+        <span style="flex:none; width:135px; font-size:12px; color:#8a8a84;">Routing</span>
+        <span style="font-size:14px; color:#2563eb;">Can Next.js build my nav automatically from my routes?</span>
+      </a>
+    </li>
+    <li style="margin:0 0 2px;">
+      <a href="#entry-9" style="display:flex; gap:10px; align-items:baseline; padding:7px 10px; border-radius:6px; color:#1c1c1a; text-decoration:none; background:transparent;">
+        <span style="flex:none; width:26px; font-family:ui-monospace,Consolas,monospace; font-size:12px; color:#a0a09a;">9</span>
+        <span style="flex:none; width:135px; font-size:12px; color:#8a8a84;">Tailwind v4</span>
+        <span style="font-size:14px; color:#2563eb;">Can I write @utility .container with a dot?</span>
+      </a>
+    </li>
+    <li style="margin:0 0 2px;">
+      <a href="#entry-8" style="display:flex; gap:10px; align-items:baseline; padding:7px 10px; border-radius:6px; color:#1c1c1a; text-decoration:none; background:transparent;">
+        <span style="flex:none; width:26px; font-family:ui-monospace,Consolas,monospace; font-size:12px; color:#a0a09a;">8</span>
+        <span style="flex:none; width:135px; font-size:12px; color:#8a8a84;">React types</span>
+        <span style="font-size:14px; color:#2563eb;">How do I type a plain &lt;div&gt; wrapper like Container?</span>
+      </a>
+    </li>
+    <li style="margin:0 0 2px;">
+      <a href="#entry-7" style="display:flex; gap:10px; align-items:baseline; padding:7px 10px; border-radius:6px; color:#1c1c1a; text-decoration:none; background:transparent;">
+        <span style="flex:none; width:26px; font-family:ui-monospace,Consolas,monospace; font-size:12px; color:#a0a09a;">7</span>
+        <span style="flex:none; width:135px; font-size:12px; color:#8a8a84;">Hydration</span>
+        <span style="font-size:14px; color:#2563eb;">Hydration error again &mdash; cz-shortcut-listen on &lt;body&gt;. Why?</span>
+      </a>
+    </li>
+    <li style="margin:0 0 2px;">
+      <a href="#entry-6" style="display:flex; gap:10px; align-items:baseline; padding:7px 10px; border-radius:6px; color:#1c1c1a; text-decoration:none; background:transparent;">
+        <span style="flex:none; width:26px; font-family:ui-monospace,Consolas,monospace; font-size:12px; color:#a0a09a;">6</span>
+        <span style="flex:none; width:135px; font-size:12px; color:#8a8a84;">Typing wrappers</span>
+        <span style="font-size:14px; color:#2563eb;">Why does &lt;Logo /&gt; demand a src when the component already has one?</span>
+      </a>
+    </li>
+    <li style="margin:0 0 2px;">
+      <a href="#entry-5" style="display:flex; gap:10px; align-items:baseline; padding:7px 10px; border-radius:6px; color:#1c1c1a; text-decoration:none; background:transparent;">
+        <span style="flex:none; width:26px; font-family:ui-monospace,Consolas,monospace; font-size:12px; color:#a0a09a;">5</span>
+        <span style="flex:none; width:135px; font-size:12px; color:#8a8a84;">Project structure</span>
+        <span style="font-size:14px; color:#2563eb;">What do you think about the ui/ folder?</span>
+      </a>
+    </li>
+    <li style="margin:0 0 2px;">
+      <a href="#entry-4" style="display:flex; gap:10px; align-items:baseline; padding:7px 10px; border-radius:6px; color:#1c1c1a; text-decoration:none; background:transparent;">
+        <span style="flex:none; width:26px; font-family:ui-monospace,Consolas,monospace; font-size:12px; color:#a0a09a;">4</span>
+        <span style="flex:none; width:135px; font-size:12px; color:#8a8a84;">Components &amp; Props</span>
+        <span style="font-size:14px; color:#2563eb;">I wrote my first component &mdash; LinkTag. What&rsquo;s wrong with it?</span>
+      </a>
+    </li>
+    <li style="margin:0 0 2px;">
+      <a href="#entry-3" style="display:flex; gap:10px; align-items:baseline; padding:7px 10px; border-radius:6px; color:#1c1c1a; text-decoration:none; background:transparent;">
+        <span style="flex:none; width:26px; font-family:ui-monospace,Consolas,monospace; font-size:12px; color:#a0a09a;">3</span>
+        <span style="flex:none; width:135px; font-size:12px; color:#8a8a84;">Hydration</span>
+        <span style="font-size:14px; color:#2563eb;">Why are suppressHydrationWarning and data-lt-installed important?</span>
+      </a>
+    </li>
+    <li style="margin:0 0 2px;">
+      <a href="#entry-2" style="display:flex; gap:10px; align-items:baseline; padding:7px 10px; border-radius:6px; color:#1c1c1a; text-decoration:none; background:transparent;">
+        <span style="flex:none; width:26px; font-family:ui-monospace,Consolas,monospace; font-size:12px; color:#a0a09a;">2</span>
+        <span style="flex:none; width:135px; font-size:12px; color:#8a8a84;">Fonts</span>
+        <span style="font-size:14px; color:#2563eb;">How do I add a font to layout.tsx?</span>
+      </a>
+    </li>
+    <li style="margin:0 0 2px;">
+      <a href="#entry-1" style="display:flex; gap:10px; align-items:baseline; padding:7px 10px; border-radius:6px; color:#1c1c1a; text-decoration:none; background:transparent;">
+        <span style="flex:none; width:26px; font-family:ui-monospace,Consolas,monospace; font-size:12px; color:#a0a09a;">1</span>
+        <span style="flex:none; width:135px; font-size:12px; color:#8a8a84;">Project structure</span>
+        <span style="font-size:14px; color:#2563eb;">How do I organise the folder structure and assets in Next.js?</span>
+      </a>
+    </li>
+  </ol>
+  </nav>
+
   <!-- NEW ENTRIES GO DIRECTLY BELOW THIS LINE -->
 
-  <section style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px;">
+  <section id="entry-12" style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px; scroll-margin-top:20px;">
+
+    <div style="font-size:12px; color:#8a8a84; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">#12 &middot; 2026-09-21 &middot; Pages</div>
+    <h2 style="margin:0 0 18px; font-size:21px; color:#111;">Is a subpage like /about just a React component, or does it need special syntax?</h2>
+
+    <p style="margin:0 0 16px;"><strong>Short answer:</strong> it&rsquo;s a plain React component. There is no special syntax inside the file. The &ldquo;magic&rdquo; is entirely in <strong>where</strong> the file lives and <strong>what it&rsquo;s called</strong>, plus one rule: the component must be the file&rsquo;s <strong>default export</strong>.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">The three rules</h3>
+    <ul style="margin:0 0 16px; padding-left:22px;">
+      <li><strong>Folder name = URL.</strong> <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">app/about/</code> &rarr; <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">/about</code>.</li>
+      <li><strong>File name must be exactly <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">page.tsx</code></strong> (lowercase). That&rsquo;s what makes the folder a real, visitable URL.</li>
+      <li><strong><code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">export default</code> a component.</strong> Next.js looks for the default export and renders it. The function&rsquo;s name doesn&rsquo;t matter &mdash; <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">Page</code>, <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">AboutPage</code>, anything.</li>
+    </ul>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">The complete file</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">// app/about/page.tsx
+export default function AboutPage() {
+  return (
+    &lt;main&gt;
+      &lt;h1&gt;About us&lt;/h1&gt;
+      &lt;p&gt;We are a small team learning Next.js.&lt;/p&gt;
+    &lt;/main&gt;
+  );
+}</pre>
+    <p style="margin:0 0 16px;">That&rsquo;s it. No import, no registration, no router config. Save it and visit <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">http://localhost:3000/about</code>. Your <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">app/layout.tsx</code> wraps it automatically, so your header and footer appear around it for free.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">Optional extras (not required)</h3>
+    <p style="margin:0 0 12px;">A page <em>can</em> do a few things a normal component can&rsquo;t, but you only add them when you need them:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">// app/about/page.tsx
+import type { Metadata } from "next";
+
+// 1. Sets the browser tab title and SEO description for this page.
+export const metadata: Metadata = {
+  title: "About",
+  description: "Who we are",
+};
+
+// 2. Pages are Server Components by default, so they may be async
+//    and fetch data directly.
+export default async function AboutPage() {
+  return &lt;h1&gt;About us&lt;/h1&gt;;
+}</pre>
+    <ul style="margin:0 0 16px; padding-left:22px;">
+      <li><strong>Server Component</strong> = a component that runs on the server and sends finished HTML. That&rsquo;s the default for every page. It means no <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">useState</code> or <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">onClick</code> in the page itself &mdash; put interactive bits in a separate component marked <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">"use client"</code>.</li>
+      <li><strong><code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">params</code> / <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">searchParams</code> props</strong> only matter for dynamic routes like <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">[slug]</code> or <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">?q=</code>. Both are <strong>Promises</strong> since Next.js 15 &mdash; see entry #11.</li>
+    </ul>
+
+    <div style="background:#fff8e6; border-left:4px solid #e0a800; padding:14px 18px; border-radius:0 6px 6px 0; margin:0 0 20px;">
+      <strong>Common beginner mistakes.</strong>
+      <ul style="margin:8px 0 0; padding-left:22px;">
+        <li><strong>Empty <code style="font-family:ui-monospace,Consolas,monospace;">page.tsx</code></strong> &rarr; error &ldquo;The default export is not a React Component&rdquo;. An empty file has no default export.</li>
+        <li><strong>Named export instead of default</strong> (<code style="font-family:ui-monospace,Consolas,monospace;">export function About()</code>) &rarr; same error. It needs the word <code style="font-family:ui-monospace,Consolas,monospace;">default</code>.</li>
+        <li><strong>Wrong filename</strong> (<code style="font-family:ui-monospace,Consolas,monospace;">About.tsx</code>, <code style="font-family:ui-monospace,Consolas,monospace;">Page.tsx</code>, <code style="font-family:ui-monospace,Consolas,monospace;">index.tsx</code>) &rarr; a 404. <code style="font-family:ui-monospace,Consolas,monospace;">index.tsx</code> is the old Pages Router habit.</li>
+        <li><strong>Adding <code style="font-family:ui-monospace,Consolas,monospace;">&lt;html&gt;</code>/<code style="font-family:ui-monospace,Consolas,monospace;">&lt;body&gt;</code></strong> in a page &rarr; those belong only in the root layout.</li>
+      </ul>
+    </div>
+
+    <div style="border-left:3px solid #2563eb; background:#eff6ff; padding:14px 18px; border-radius:0 6px 6px 0; margin:20px 0 0;">
+      <strong>Next step:</strong> link to it from your header with <code>&lt;Link href="/about"&gt;</code> from <code>next/link</code> (not a plain <code>&lt;a&gt;</code>) &mdash; that&rsquo;s the linking-and-navigating lesson.
+    </div>
+
+    <p style="margin:18px 0 0; font-size:13px; color:#8a8a84;">Sources: bundled docs <code>node_modules/next/dist/docs/01-app/01-getting-started/03-layouts-and-pages.md</code> and <code>.../03-api-reference/03-file-conventions/page.md</code> &mdash; Next.js 16.3.5.</p>
+
+    <p style="margin:20px 0 0; font-size:12px;"><a href="#contents" style="color:#8a8a84; text-decoration:none;">&uarr; Back to contents</a></p>
+  </section>
+
+  <section id="entry-11" style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px; scroll-margin-top:20px;">
+
+    <div style="font-size:12px; color:#8a8a84; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">#11 &middot; 2026-09-21 &middot; Routing standards</div>
+    <h2 style="margin:0 0 18px; font-size:21px; color:#111;">What are the industry standards for routing in Next.js?</h2>
+
+    <p style="margin:0 0 16px;"><strong>The one-line version:</strong> App Router, folders are URLs, a route only exists when you add <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">page.tsx</code>, and everything else is a small set of reserved filenames that each do one job. Master those and you&rsquo;ve got 90% of it.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">1. Rule zero: App Router, not Pages Router</h3>
+    <p style="margin:0 0 12px;">Next.js has two routing systems. <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">app/</code> is the current one and the only one you should learn. <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">pages/</code> still works for old projects but gets no new features.</p>
+    <div style="background:#fff8e6; border-left:4px solid #e0a800; padding:14px 18px; border-radius:0 6px 6px 0; margin:0 0 20px;">
+      <strong>How to spot an outdated tutorial in three seconds.</strong> If you see any of these, close the tab: <code style="font-family:ui-monospace,Consolas,monospace;">pages/</code>, <code style="font-family:ui-monospace,Consolas,monospace;">getServerSideProps</code>, <code style="font-family:ui-monospace,Consolas,monospace;">getStaticProps</code>, <code style="font-family:ui-monospace,Consolas,monospace;">_app.js</code>, <code style="font-family:ui-monospace,Consolas,monospace;">_document.js</code>, <code style="font-family:ui-monospace,Consolas,monospace;">next/router</code> (the current one is <code style="font-family:ui-monospace,Consolas,monospace;">next/navigation</code>). This is the single biggest source of confusion for people learning Next.js in 2026 &mdash; most of the internet still describes the old system.
+    </div>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">2. The mental model: two rules</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">app/blog/authors/page.tsx   &rarr;   /blog/authors
+    ^^^^ ^^^^^^^ ^^^^^^^^
+    |    |       |
+    |    |       &rsquo;&mdash; RULE 2: a folder becomes a real URL only when it
+    |    |                  contains page.tsx (or route.ts for an API)
+    &rsquo;&mdash;&mdash;&mdash;&rsquo;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; RULE 1: folder names are URL segments</pre>
+    <p style="margin:0 0 16px;">Rule 2 is the one that relaxes people: <strong>you can put anything you like inside <code style="font-family:ui-monospace,Consolas,monospace;">app/</code> without creating a route.</strong> A <code style="font-family:ui-monospace,Consolas,monospace;">utils.ts</code>, a component, a test file &mdash; none of them are reachable by URL. The docs call this <em>colocation</em>, and it&rsquo;s safe by design.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">3. The reserved filenames</h3>
+    <p style="margin:0 0 12px;">These names are the API. Each does exactly one job, and they must be lowercase exactly as written &mdash; <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">Page.tsx</code> is just a normal file.</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">page.tsx        the actual page. Its presence = this URL exists.
+layout.tsx      shared shell, wraps this segment and everything under it.
+                Keeps its state across navigations (your header lives here).
+loading.tsx     skeleton shown while the page loads. One file = automatic
+                Suspense boundary. Cheapest UX win in the framework.
+error.tsx       error boundary for this segment. Must be a Client Component.
+not-found.tsx   shown by notFound() or an unmatched URL.
+route.ts        an API endpoint instead of a page. Can't coexist with page.tsx.
+template.tsx    like layout, but remounts on every navigation. Rare.
+default.tsx     fallback for parallel routes. Rarer.</pre>
+    <p style="margin:0 0 12px;">They nest in a fixed order, which is worth picturing once:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">layout
+ └ template
+    └ error          (catches everything below it)
+       └ loading     (shows while everything below is pending)
+          └ not-found
+             └ page  (or the next layout down)</pre>
+    <p style="margin:0 0 16px;">So an <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">error.tsx</code> in <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">app/events/</code> catches failures anywhere under <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">/events</code> while the header and nav stay on screen. <strong>That&rsquo;s the payoff of nested routing:</strong> a broken page breaks a panel, not the whole site.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">4. Dynamic segments &mdash; and the v16 gotcha</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">app/events/[slug]/page.tsx      &rarr;  /events/summer-camp
+app/shop/[...slug]/page.tsx     &rarr;  /shop/a, /shop/a/b        (catch-all)
+app/docs/[[...slug]]/page.tsx   &rarr;  /docs, /docs/a, /docs/a/b (optional catch-all)</pre>
+    <div style="background:#fff8e6; border-left:4px solid #e0a800; padding:14px 18px; border-radius:0 6px 6px 0; margin:0 0 20px;">
+      <strong><code style="font-family:ui-monospace,Consolas,monospace;">params</code> is a Promise now.</strong> It was a plain object up to Next.js 14. Every older tutorial destructures it directly, and that silently breaks. You must <code style="font-family:ui-monospace,Consolas,monospace;">await</code> it.
+    </div>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">// app/events/[slug]/page.tsx  &mdash; the v16 way
+export default async function Page(props: PageProps&lt;"/events/[slug]"&gt;) {
+  const { slug } = await props.params;
+  return &lt;h1&gt;{slug}&lt;/h1&gt;;
+}</pre>
+    <p style="margin:0 0 16px;"><code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">PageProps</code> is <strong>global</strong> &mdash; no import needed, same as the <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">LayoutProps&lt;"/"&gt;</code> already sitting in your <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">layout.tsx</code>. You give it the route string and it types <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">params</code> for you. <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">searchParams</code> (the <code style="font-family:ui-monospace,Consolas,monospace;">?q=&hellip;</code> part) is a Promise too.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">5. Two organising tools everyone uses</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">(group)     round brackets &mdash; groups files WITHOUT adding a URL segment
+_folder     leading underscore &mdash; opts the folder out of routing entirely</pre>
+    <p style="margin:0 0 12px;"><strong>Route groups</strong> are the real industry pattern, and the reason is layouts. Once your app has a public side and a logged-in side, they need different shells:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">app/
+  (marketing)/
+    layout.tsx        &larr; public header + footer
+    page.tsx          &rarr; /
+    about/page.tsx    &rarr; /about
+  (app)/
+    layout.tsx        &larr; sidebar, requires login
+    feed/page.tsx     &rarr; /feed
+    trainees/page.tsx &rarr; /trainees</pre>
+    <p style="margin:0 0 16px;">Note the URLs: <strong><code style="font-family:ui-monospace,Consolas,monospace;">(marketing)</code> and <code style="font-family:ui-monospace,Consolas,monospace;">(app)</code> never appear.</strong> They exist purely so two sets of pages can have two different layouts. That&rsquo;s the thing route groups are for, and you&rsquo;ll want it the moment trainees log in.</p>
+    <p style="margin:0 0 16px;"><strong>Private folders</strong> (<code style="font-family:ui-monospace,Consolas,monospace;">_components</code>, <code style="font-family:ui-monospace,Consolas,monospace;">_lib</code>) are for colocating a component used by exactly one route. You don&rsquo;t strictly need them &mdash; colocation is already safe &mdash; but they signal &ldquo;implementation detail, not a route&rdquo; and protect you from clashing with future Next.js filenames.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">6. Where components live: the split everyone converges on</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">used by ONE route          &rarr;  app/events/_components/EventCard.tsx
+used by MANY routes        &rarr;  components/
+the app shell              &rarr;  components/layout/     &larr; you already have this
+generic primitives         &rarr;  components/ui/
+non-React helpers          &rarr;  lib/  (db.ts, formatDate.ts, auth.ts)</pre>
+    <p style="margin:0 0 16px;">Next.js is officially <strong>unopinionated</strong> here &mdash; the docs say so outright. But that list is what most teams land on, and you&rsquo;ve already got the important half of it from entry #5.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">7. Naming conventions</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">app/ folders      lowercase-kebab-case    /event-details   not  /eventDetails
+reserved files    exact lowercase         page.tsx         not  Page.tsx
+components        PascalCase              EventCard.tsx
+helpers           camelCase               formatDate.ts</pre>
+    <p style="margin:0 0 16px;">Kebab-case URLs are a web convention older than Next.js: URLs are case-sensitive on Linux servers, and search engines read hyphens as word separators while they read camelCase as one word.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">8. Two more current-version facts</h3>
+    <ul style="margin:0 0 16px; padding-left:22px;">
+      <li><strong><code style="font-family:ui-monospace,Consolas,monospace;">middleware.ts</code> is now <code style="font-family:ui-monospace,Consolas,monospace;">proxy.ts</code>.</strong> Renamed in Next.js 16 &mdash; same functionality, new name, sits at the project root beside <code style="font-family:ui-monospace,Consolas,monospace;">app/</code>. It runs before routes render, so it&rsquo;s where auth redirects go. Every tutorial you find will say &ldquo;middleware&rdquo;. There&rsquo;s a codemod: <code style="font-family:ui-monospace,Consolas,monospace;">npx @next/codemod@canary middleware-to-proxy .</code></li>
+      <li><strong><code style="font-family:ui-monospace,Consolas,monospace;">typedRoutes: true</code></strong> is stable and is becoming the default expectation on TypeScript projects &mdash; it turns a bad <code style="font-family:ui-monospace,Consolas,monospace;">href</code> into a build error. See entry #10.</li>
+    </ul>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">9. What this means for your app</h3>
+    <p style="margin:0 0 12px;">Right now <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">app/</code> holds exactly one route. Based on your <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">MyAppToDoList.md</code>, here&rsquo;s the shape to grow into:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">app/
+  layout.tsx                    &larr; root shell (you have this)
+  page.tsx                      &rarr; /
+  about/page.tsx                &rarr; /about
+  contact/page.tsx              &rarr; /contact
+  feed/
+    page.tsx                    &rarr; /feed
+    loading.tsx                 &larr; skeleton while posts load
+  trainees/
+    page.tsx                    &rarr; /trainees
+    [id]/page.tsx               &rarr; /trainees/42
+  events/
+    page.tsx                    &rarr; /events
+    [slug]/
+      page.tsx                  &rarr; /events/summer-camp
+      not-found.tsx             &larr; "no such event"
+  api/
+    events/route.ts             &rarr; /api/events</pre>
+    <p style="margin:0 0 16px;"><strong>Don&rsquo;t build this now.</strong> Add <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">app/about/page.tsx</code>, see <code style="font-family:ui-monospace,Consolas,monospace;">/about</code> work, and stop. Route groups, parallel routes and intercepting routes (<code style="font-family:ui-monospace,Consolas,monospace;">@modal</code>, <code style="font-family:ui-monospace,Consolas,monospace;">(.)photo</code>) are real and standard, but they solve problems you don&rsquo;t have yet. <strong>Structure earns its complexity; it never arrives ahead of it.</strong></p>
+
+    <div style="border-left:3px solid #2563eb; background:#eff6ff; padding:14px 18px; border-radius:0 6px 6px 0; margin:20px 0 0;">
+      <strong>Next step:</strong> create <code>app/about/page.tsx</code> with three lines in it, then add <code>app/about/loading.tsx</code> containing the word &ldquo;Loading&hellip;&rdquo;. Two files, and you&rsquo;ve used the two most important conventions in the framework.
+    </div>
+
+    <p style="margin:18px 0 0; font-size:13px; color:#8a8a84;">Sources: bundled docs <code>node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md</code> (conventions, colocation, private folders, component hierarchy), <code>.../03-file-conventions/page.md</code> (async params, PageProps), <code>.../route-groups.md</code>, <code>.../proxy.md</code> and <code>.../middleware.md</code> (renamed in v16) &mdash; Next.js 16.3.5.</p>
+
+
+    <p style="margin:20px 0 0; font-size:12px;"><a href="#contents" style="color:#8a8a84; text-decoration:none;">&uarr; Back to contents</a></p>
+  </section>
+
+  <section id="entry-10" style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px; scroll-margin-top:20px;">
+
+    <div style="font-size:12px; color:#8a8a84; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">#10 &middot; 2026-09-21 &middot; Routing</div>
+    <h2 style="margin:0 0 18px; font-size:21px; color:#111;">Can Next.js build my nav automatically from my routes?</h2>
+
+    <p style="margin:0 0 16px;"><strong>Short answer: no, and that&rsquo;s deliberate.</strong> There is no <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">getRoutes()</code> in Next.js &mdash; not in v16, not in any version. But there <em>is</em> a feature that checks your hand-written nav against the real routes and fails the build on a typo, which is the genuinely useful half of what you&rsquo;re asking for.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">1. Why there&rsquo;s no route list to read</h3>
+    <p style="margin:0 0 12px;">Three reasons, and they compound:</p>
+    <ul style="margin:0 0 16px; padding-left:22px;">
+      <li><strong>Your <code style="font-family:ui-monospace,Consolas,monospace;">app/</code> folder doesn&rsquo;t exist in production.</strong> <code style="font-family:ui-monospace,Consolas,monospace;">next build</code> compiles your pages into JavaScript bundles and ships those. There is no directory left to scan at runtime.</li>
+      <li><strong>Dynamic routes can&rsquo;t be counted.</strong> <code style="font-family:ui-monospace,Consolas,monospace;">app/blog/[slug]/page.tsx</code> is not one route &mdash; it&rsquo;s every blog post that will ever exist. Which of those belongs in a nav bar?</li>
+      <li><strong>The filesystem doesn&rsquo;t know what you&rsquo;d want anyway.</strong> It can&rsquo;t tell you the order, the label (is <code style="font-family:ui-monospace,Consolas,monospace;">app/ueber-uns/</code> called &ldquo;About&rdquo; or &ldquo;&Uuml;ber uns&rdquo;?), or which pages to hide &mdash; your privacy policy, a thank-you page, a 404.</li>
+    </ul>
+    <div style="background:#f7f7f5; border:1px solid #e4e4df; border-radius:8px; padding:14px 18px; margin:0 0 16px; font-size:14.5px; color:#44443f;">
+      <em>Analogy:</em> the floor plan knows every room in the building. It does not know which ones belong on the lobby directory, what to call them, or in what order. That is an editorial decision, and only you can make it.
+    </div>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">2. The tempting idea that will cost you an evening</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">import fs from "node:fs";
+const routes = fs.readdirSync("./app");   // &lt;- don't</pre>
+    <p style="margin:0 0 16px;">This <em>works in <code style="font-family:ui-monospace,Consolas,monospace;">npm run dev</code></em>, which is exactly what makes it dangerous. It dies on deploy (no source directory), gives you folder names rather than labels, has no ordering, can&rsquo;t express <code style="font-family:ui-monospace,Consolas,monospace;">[slug]</code>, and drags Node-only APIs into your component tree. If you find yourself reaching for <code style="font-family:ui-monospace,Consolas,monospace;">fs</code> to solve a routing problem, stop.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">3. Level 1 &mdash; one array, one place to edit</h3>
+    <p style="margin:0 0 12px;">This is what real Next.js apps do. It is not a workaround; it&rsquo;s the right answer.</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">// components/layout/header/navItems.ts
+export const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contact", label: "Contact" },
+];</pre>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">// components/layout/header/HeaderMain.tsx
+import { navItems } from "./navItems";
+
+&lt;ul className="lg:flex lg:gap-3"&gt;
+  {navItems.map((item) =&gt; (
+    &lt;li key={item.href}&gt;
+      &lt;LinkTag href={item.href}&gt;{item.label}&lt;/LinkTag&gt;
+    &lt;/li&gt;
+  ))}
+&lt;/ul&gt;</pre>
+    <p style="margin:0 0 16px;">Five hand-written <code style="font-family:ui-monospace,Consolas,monospace;">&lt;li&gt;</code>s become one loop. Adding a page is now a one-line edit in one file &mdash; and the footer can import the same array, so header and footer can never drift apart. <strong>This is also where <code style="font-family:ui-monospace,Consolas,monospace;">key</code> from entry #4 finally earns its keep</strong>: <code style="font-family:ui-monospace,Consolas,monospace;">key={item.href}</code>, because hrefs are unique and stable.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">4. Level 2 &mdash; let Next.js check the list for you</h3>
+    <p style="margin:0 0 12px;">This is the closest thing to what you asked for. Turn on typed routes:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">// next.config.ts
+const nextConfig: NextConfig = {
+  typedRoutes: true,
+};</pre>
+    <p style="margin:0 0 12px;">Next.js scans <code style="font-family:ui-monospace,Consolas,monospace;">app/</code> at build time and generates a type listing every route that exists. Then type your array with it &mdash; this example is straight out of the bundled docs:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">// components/layout/header/navItems.ts
+import type { Route } from "next";
+
+type NavItem&lt;T extends string = string&gt; = {
+  href: T;
+  label: string;
+};
+
+export const navItems: NavItem&lt;Route&gt;[] = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/blog", label: "Blog" },
+];</pre>
+    <p style="margin:0 0 16px;">Now <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">href: "/abuot"</code> is a <strong>compile error</strong>, not a 404 a visitor finds for you. You still write the nav by hand, but the filesystem becomes the referee. <strong>Automatic <em>checking</em> instead of automatic <em>generation</em> &mdash; and checking is the part that actually prevents bugs.</strong></p>
+    <div style="background:#fff8e6; border-left:4px solid #e0a800; padding:14px 18px; border-radius:0 6px 6px 0; margin:0 0 20px;">
+      <strong>Careful with the order you do this in.</strong> Your <code style="font-family:ui-monospace,Consolas,monospace;">app/</code> folder currently contains exactly one route &mdash; <code style="font-family:ui-monospace,Consolas,monospace;">app/page.tsx</code>. There is no <code style="font-family:ui-monospace,Consolas,monospace;">/about</code>, no <code style="font-family:ui-monospace,Consolas,monospace;">/blog</code>. (That&rsquo;s why all five links in your header point at <code style="font-family:ui-monospace,Consolas,monospace;">/</code>.) Switch on <code style="font-family:ui-monospace,Consolas,monospace;">typedRoutes</code> today and every one of those hrefs becomes a type error &mdash; correctly. <strong>Create the pages first, then turn it on.</strong>
+    </div>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">5. Level 3 &mdash; genuinely generated, when pages come from data</h3>
+    <p style="margin:0 0 12px;">There <em>is</em> a case where the nav should build itself: when the pages don&rsquo;t come from files at all. If your events live in a database, the filesystem has one route &mdash; <code style="font-family:ui-monospace,Consolas,monospace;">app/events/[slug]/page.tsx</code> &mdash; and the <em>data</em> is the source of truth:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">// app/events/[slug]/page.tsx
+export async function generateStaticParams() {
+  const events = await getEvents();
+  return events.map((event) =&gt; ({ slug: event.slug }));
+}</pre>
+    <p style="margin:0 0 16px;">The same query feeds a generated list of event links. For your app that means: <strong>Events and the Feed are Level 3</strong> (generated from data), while <strong>Home / About / Services / Contact stay Level 1</strong> (a hand-kept array). Almost every real site is this mix, and knowing which half you&rsquo;re in is the actual skill.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">6. What you&rsquo;ll want next: highlighting the current page</h3>
+    <p style="margin:0 0 12px;">The moment the nav is a loop, you&rsquo;ll want the active link to look different. That needs the current URL, which means <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">usePathname</code>:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">"use client";
+
+import { usePathname } from "next/navigation";
+import { navItems } from "./navItems";
+import LinkTag from "../shared/LinkTag";
+
+export default function NavList() {
+  const pathname = usePathname();
+
+  return (
+    &lt;ul className="lg:flex lg:gap-3"&gt;
+      {navItems.map((item) =&gt; (
+        &lt;li key={item.href}&gt;
+          &lt;LinkTag
+            href={item.href}
+            className={pathname === item.href ? "bg-foreground/10" : ""}
+            aria-current={pathname === item.href ? "page" : undefined}
+          &gt;
+            {item.label}
+          &lt;/LinkTag&gt;
+        &lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}</pre>
+    <p style="margin:0 0 12px;">Two things the docs are explicit about, and both will bite you otherwise:</p>
+    <ul style="margin:0 0 16px; padding-left:22px;">
+      <li><strong><code style="font-family:ui-monospace,Consolas,monospace;">usePathname</code> is Client-only.</strong> Reading the current URL from a Server Component is <em>intentionally unsupported</em> &mdash; it&rsquo;s what lets layouts keep their state across navigations. So this file needs <code style="font-family:ui-monospace,Consolas,monospace;">"use client"</code> at the very top.</li>
+      <li><strong>Keep it small.</strong> Don&rsquo;t put <code style="font-family:ui-monospace,Consolas,monospace;">"use client"</code> on <code style="font-family:ui-monospace,Consolas,monospace;">HeaderMain</code> &mdash; split just the list into its own component, as above. The logo and the shell stay server-rendered. The docs are clear that Client Components aren&rsquo;t a de-optimisation, but there&rsquo;s still no reason to ship more JavaScript than the interactive bit needs.</li>
+    </ul>
+    <p style="margin:0 0 16px; color:#55554f; font-size:14.5px;"><code style="font-family:ui-monospace,Consolas,monospace;">aria-current="page"</code> is the free accessibility win: it tells a screen reader which link is the current page, instead of leaving that information in the colour alone.</p>
+
+    <div style="border-left:3px solid #2563eb; background:#eff6ff; padding:14px 18px; border-radius:0 6px 6px 0; margin:20px 0 0;">
+      <strong>Next step, in this order:</strong> (1) create <code>app/about/page.tsx</code> and <code>app/contact/page.tsx</code> so the routes are real; (2) move the nav into <code>navItems.ts</code> and map over it; (3) <em>then</em> switch on <code>typedRoutes</code> and watch it catch a deliberate typo. Doing it in that order means every step passes instead of fighting you.
+    </div>
+
+    <p style="margin:18px 0 0; font-size:13px; color:#8a8a84;">Sources: bundled docs <code>node_modules/next/dist/docs/01-app/03-api-reference/05-config/02-typescript.md</code> (statically typed links, nav-items example), <code>.../04-functions/use-pathname.md</code>, <code>.../04-functions/generate-static-params.md</code>, <code>.../05-config/01-next-config-js/typedRoutes.md</code> (Next.js 16.3.5) &middot; absence of a route-listing API confirmed against the full function reference index.</p>
+
+
+    <p style="margin:20px 0 0; font-size:12px;"><a href="#contents" style="color:#8a8a84; text-decoration:none;">&uarr; Back to contents</a></p>
+  </section>
+
+  <section id="entry-9" style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px; scroll-margin-top:20px;">
+
+    <div style="font-size:12px; color:#8a8a84; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">#9 &middot; 2026-09-21 &middot; Tailwind v4</div>
+    <h2 style="margin:0 0 18px; font-size:21px; color:#111;">Can I write <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:17px;">@utility .container</code> with a dot?</h2>
+
+    <p style="margin:0 0 16px;"><strong>No.</strong> Drop the dot: <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">@utility container { &hellip; }</code>. And this isn&rsquo;t a style preference &mdash; it is <strong>hard-failing your site right now</strong>.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">1. What&rsquo;s happening on your machine this second</h3>
+    <p style="margin:0 0 12px;">I requested <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">localhost:3000</code> and got back a <strong>500 error page</strong> instead of your site. Tailwind refused to compile the stylesheet:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">CssSyntaxError: tailwindcss: app/globals.css:1:1:
+  `@utility .container` defines an invalid utility name.
+  Utilities should be alphanumeric and start with a lowercase letter.</pre>
+    <p style="margin:0 0 16px;">One bad character in a CSS file took the whole page down &mdash; because <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">layout.tsx</code> imports <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">globals.css</code>, and a module that fails to build fails everything that imports it. Good news: the message names the file, the directive and the rule, which is about as helpful as an error gets.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">2. Why the dot is wrong: name position vs selector position</h3>
+    <p style="margin:0 0 12px;">Almost everywhere in CSS you write a <strong>selector</strong> &mdash; a pattern that matches elements. <code style="font-family:ui-monospace,Consolas,monospace;">.container</code>, <code style="font-family:ui-monospace,Consolas,monospace;">#main</code>, <code style="font-family:ui-monospace,Consolas,monospace;">a:hover</code>. The dot means &ldquo;class&rdquo;. After years of CSS your fingers type it automatically.</p>
+    <p style="margin:0 0 12px;">But <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">@utility</code> is not a selector position &mdash; it is a <strong>name</strong> position. You aren&rsquo;t saying &ldquo;style the elements matching <code style="font-family:ui-monospace,Consolas,monospace;">.container</code>&rdquo;; you are saying <strong>&ldquo;define a utility called <code style="font-family:ui-monospace,Consolas,monospace;">container</code>&rdquo;</strong> and letting Tailwind generate the selector for you.</p>
+    <p style="margin:0 0 12px;">You already know two other name positions, and you&rsquo;d never put a dot in them either:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">@keyframes slide-in { ... }     not  @keyframes .slide-in
+@font-face { font-family: Oswald }   you name it, you don't select it
+@utility container { ... }      not  @utility .container
+
+.container { ... }              &larr; THIS one is a selector. Dot required.</pre>
+    <div style="background:#f7f7f5; border:1px solid #e4e4df; border-radius:8px; padding:14px 18px; margin:0 0 16px; font-size:14.5px; color:#44443f;">
+      <em>Analogy:</em> naming a new tool versus reaching for one on the shelf. <code style="font-family:ui-monospace,Consolas,monospace;">@utility container</code> is engraving &ldquo;container&rdquo; on the handle. <code style="font-family:ui-monospace,Consolas,monospace;">.container { }</code> is walking to the shelf and picking up the one labelled that. You don&rsquo;t engrave the shelf label onto the handle.
+    </div>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">3. The fix</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">/* app/globals.css */
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+}</pre>
+    <p style="margin:0 0 16px;">Your <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">@apply mx-auto</code> version works too &mdash; <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">@apply</code> is allowed inside <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">@utility</code> &mdash; the dot was the only problem. But once you&rsquo;re writing a utility definition, plain CSS properties are usually clearer: <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">margin-inline: auto</code> says exactly what it does, while <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">@apply mx-auto</code> makes the reader translate a shorthand back into the thing it already was.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">4. The naming rules, read off the error message</h3>
+    <p style="margin:0 0 12px;">&ldquo;Alphanumeric and start with a lowercase letter&rdquo; rules out more than the dot:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">@utility container      OK
+@utility content-grid   OK   (hyphens are fine inside the name)
+@utility tab-4          OK
+
+@utility .container     no &mdash; dot is a selector
+@utility Container      no &mdash; must start lowercase
+@utility 2col           no &mdash; must start with a letter</pre>
+    <p style="margin:0 0 16px;">Naming an existing utility &mdash; like <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">container</code> &mdash; <strong>extends</strong> it rather than replacing it. That&rsquo;s the whole point, and it&rsquo;s the fix for the duplicate-<code style="font-family:ui-monospace,Consolas,monospace;">.container</code> race from entry #8: instead of two rules competing in the stylesheet, there is now one utility that Tailwind owns and you added to.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">5. How to check it worked</h3>
+    <p style="margin:0 0 12px;">Reload the page &mdash; if the 500 is gone, Tailwind compiled. Then look at the generated CSS (DevTools &rarr; Sources, or the <code style="font-family:ui-monospace,Consolas,monospace;">&lt;link&gt;</code> in view-source) and search for <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">margin-inline</code>. You want to see your declarations merged into the container rule, not sitting in a second competing block.</p>
+    <div style="background:#fff8e6; border-left:4px solid #e0a800; padding:14px 18px; border-radius:0 6px 6px 0; margin:0 0 20px;">
+      <strong>Habit worth forming:</strong> when a page suddenly 500s right after you edited CSS, read the terminal running <code style="font-family:ui-monospace,Consolas,monospace;">next dev</code> before touching anything else. CSS build errors show up there in full, while the browser often shows only a generic error page. The answer was sitting in that log the whole time.
+    </div>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">6. Also: the hydration fix landed</h3>
+    <p style="margin:0 0 12px;"><code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">layout.tsx</code> is now exactly right &mdash; <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">cz-shortcut-listen</code> gone, <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">suppressHydrationWarning</code> on both <code style="font-family:ui-monospace,Consolas,monospace;">&lt;html&gt;</code> and <code style="font-family:ui-monospace,Consolas,monospace;">&lt;body&gt;</code>. One thing I spotted in the dev log worth naming, because you clearly tried it on the way:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">Received `true` for a non-boolean attribute `cz-shortcut-listen`.
+&hellip; and later in the HTML:  suppresshydrationwarning="true"
+                            ^^^^^^^^^^^^^^^^^^^^^^^^ all lowercase &mdash; React didn't recognise it</pre>
+    <p style="margin:0 0 16px;">That second one is the tell that a prop name was mistyped in casing. React props are <strong>camelCase</strong>; anything it doesn&rsquo;t recognise it passes through to the DOM as a literal attribute, lowercased. So <code style="font-family:ui-monospace,Consolas,monospace;">suppresshydrationwarning</code> silently became a meaningless HTML attribute instead of the React feature &mdash; and then showed up in the mismatch diff as yet another unexpected attribute. <strong>If a React prop appears in view-source, it wasn&rsquo;t a real prop.</strong> Real ones are consumed, not printed.</p>
+
+    <div style="border-left:3px solid #2563eb; background:#eff6ff; padding:14px 18px; border-radius:0 6px 6px 0; margin:20px 0 0;">
+      <strong>Next step:</strong> with <code>container</code> finally owned by one definition, swap the hand-written <code>&lt;div className="container"&gt;</code> in <code>HeaderMain</code> and <code>FooterMain</code> over to your <code>&lt;Container&gt;</code> component. That closes the loop from entry #8 &mdash; one component, one utility, one place to change the page width.
+    </div>
+
+    <p style="margin:18px 0 0; font-size:13px; color:#8a8a84;">Sources: error reproduced by requesting the running dev server, message emitted by <code>@tailwindcss/postcss</code> (Tailwind v4) &middot; <a href="https://tailwindcss.com/docs/max-width" style="color:#8a8a84;">Tailwind CSS docs</a> &middot; see also entries #7 and #8.</p>
+
+
+    <p style="margin:20px 0 0; font-size:12px;"><a href="#contents" style="color:#8a8a84; text-decoration:none;">&uarr; Back to contents</a></p>
+  </section>
+
+  <section id="entry-8" style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px; scroll-margin-top:20px;">
+
+    <div style="font-size:12px; color:#8a8a84; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">#8 &middot; 2026-09-21 &middot; React types</div>
+    <h2 style="margin:0 0 18px; font-size:21px; color:#111;">How do I type a plain <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:17px;">&lt;div&gt;</code> wrapper like <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:17px;">Container</code>?</h2>
+
+    <p style="margin:0 0 16px;"><strong>Short answer:</strong> <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">ComponentProps&lt;"div"&gt;</code> &mdash; the same helper you used for <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">LinkTag</code> and <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">Logo</code>, but with a <strong>string</strong> instead of <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">typeof Something</code>. The whole type is one line, and you don&rsquo;t declare <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">className</code> or <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">children</code> at all.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">1. The errors</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">Container.tsx(2,37): error TS1005: ';' expected.
+Container.tsx(3,16): error TS1109: Expression expected.</pre>
+    <p style="margin:0 0 16px;">Both point at the same two lines, and they are <em>parser</em> errors &mdash; TypeScript couldn&rsquo;t even finish reading the file, so it never got as far as checking your logic. That&rsquo;s why the messages are so unhelpful: the compiler is lost, not disagreeing.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">2. Three separate mistakes in two lines</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">type ContainerProps = HTMLDivElement{
+                                    ^ (1) missing &amp;
+                      ^^^^^^^^^^^^^^ (2) wrong type entirely
+    children: React.nodeElement
+              ^^^^^^^^^^^^^^^^^ (3) doesn't exist &mdash; it's React.ReactNode
+};</pre>
+    <p style="margin:0 0 12px;"><strong>(1) Missing <code style="font-family:ui-monospace,Consolas,monospace;">&amp;</code>.</strong> You can&rsquo;t write a type and an object type side by side. To combine two types you need the intersection operator: <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">A &amp; { &hellip; }</code>. That&rsquo;s the literal syntax error &mdash; but fixing it would not fix the file, because of (2).</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">3. The one worth really understanding: an element is not its props</h3>
+    <p style="margin:0 0 12px;"><code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">HTMLDivElement</code> is the <strong>live DOM node</strong> &mdash; the object the browser creates and hands you from <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">document.querySelector("div")</code>. It has <code style="font-family:ui-monospace,Consolas,monospace;">.innerHTML</code>, <code style="font-family:ui-monospace,Consolas,monospace;">.scrollTop</code>, <code style="font-family:ui-monospace,Consolas,monospace;">.offsetWidth</code>, <code style="font-family:ui-monospace,Consolas,monospace;">.click()</code> &mdash; a couple of hundred members describing a div that <em>already exists on a page</em>.</p>
+    <p style="margin:0 0 16px;">A props type is the opposite direction: the <strong>list of attributes someone may write in JSX</strong> before anything exists.</p>
+    <div style="background:#f7f7f5; border:1px solid #e4e4df; border-radius:8px; padding:14px 18px; margin:0 0 16px; font-size:14.5px; color:#44443f;">
+      <em>Analogy:</em> <code style="font-family:ui-monospace,Consolas,monospace;">HTMLDivElement</code> is the finished car in the driveway &mdash; odometer, current speed, engine temperature. The props type is the <strong>order form</strong> at the dealership &mdash; colour, trim, options. Same car, opposite ends of its life. You handed the customer an engine block and asked them to fill it in.
+    </div>
+    <p style="margin:0 0 12px;"><strong>Where <code style="font-family:ui-monospace,Consolas,monospace;">HTMLDivElement</code> <em>is</em> correct</strong> &mdash; and you will meet it in real code &mdash; is as a <em>type argument</em>, answering &ldquo;what kind of node does this point at?&rdquo;:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">const ref = useRef&lt;HTMLDivElement&gt;(null);              // "this ref will hold a div"
+type X = React.HTMLAttributes&lt;HTMLDivElement&gt;;        // "attributes valid on a div"
+                              ^^^^^^^^^^^^^^ inside the brackets: fine
+type Y = HTMLDivElement;                              // as the props type: never</pre>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">4. <code style="font-size:15px;">React.nodeElement</code> &rarr; <code style="font-size:15px;">React.ReactNode</code></h3>
+    <p style="margin:0 0 12px;">There is no <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">nodeElement</code> in React. The three names actually worth knowing:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">ReactNode        anything React can render:
+                 string | number | JSX | array | null | undefined | boolean
+                 &rarr; this is what children is
+
+ReactElement     specifically a JSX element. Narrower &mdash; rejects a plain string.
+                 Only use it when you truly need to forbid text.
+
+ComponentProps&lt;T&gt; the props of T, where T is a component OR an HTML tag name.</pre>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">5. The fixed component</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">// components/layout/shared/Container.tsx
+import type { ComponentProps } from "react";
+
+type ContainerProps = ComponentProps&lt;"div"&gt;;
+
+const Container = ({ className = "", children, ...props }: ContainerProps) =&gt; {
+  return (
+    &lt;div className={`container ${className}`} {...props}&gt;
+      {children}
+    &lt;/div&gt;
+  );
+};
+
+export default Container;</pre>
+    <p style="margin:0 0 12px;">The body you already had was <strong>completely right</strong> &mdash; destructure <code style="font-family:ui-monospace,Consolas,monospace;">className</code> with a default, merge it, forward the rest. Only the type line was wrong. Two things to notice:</p>
+    <ul style="margin:0 0 16px; padding-left:22px;">
+      <li><strong><code style="font-family:ui-monospace,Consolas,monospace;">ComponentProps</code> takes either a component or a tag name.</strong> <code style="font-family:ui-monospace,Consolas,monospace;">ComponentProps&lt;typeof Link&gt;</code> for a component; <code style="font-family:ui-monospace,Consolas,monospace;">ComponentProps&lt;"div"&gt;</code>, <code style="font-family:ui-monospace,Consolas,monospace;">&lt;"button"&gt;</code>, <code style="font-family:ui-monospace,Consolas,monospace;">&lt;"a"&gt;</code> for plain HTML. Same helper, both worlds &mdash; that&rsquo;s the bit you were missing.</li>
+      <li><strong>You don&rsquo;t declare <code style="font-family:ui-monospace,Consolas,monospace;">className</code> or <code style="font-family:ui-monospace,Consolas,monospace;">children</code>.</strong> They&rsquo;re already in there, along with <code style="font-family:ui-monospace,Consolas,monospace;">id</code>, <code style="font-family:ui-monospace,Consolas,monospace;">onClick</code>, <code style="font-family:ui-monospace,Consolas,monospace;">style</code>, every <code style="font-family:ui-monospace,Consolas,monospace;">aria-*</code> and every <code style="font-family:ui-monospace,Consolas,monospace;">data-*</code>. That&rsquo;s why the whole thing collapses to one line.</li>
+    </ul>
+    <p style="margin:0 0 16px; color:#55554f; font-size:14.5px;"><strong>Beginner trap right after this one:</strong> once <code style="font-family:ui-monospace,Consolas,monospace;">ComponentProps&lt;"div"&gt;</code> compiles, it is tempting to add <code style="font-family:ui-monospace,Consolas,monospace;">&amp; { children: React.ReactNode }</code> &ldquo;to be safe&rdquo;. Don&rsquo;t &mdash; you&rsquo;d be narrowing an optional prop into a required one and forcing every caller to pass children.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">6. Bonus: your <code style="font-size:15px;">.container</code> CSS is racing Tailwind</h3>
+    <p style="margin:0 0 12px;">Since the component applies <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">container</code>, I pulled the compiled stylesheet off your dev server. There are <strong>two</strong> <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">.container</code> rules in it:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">.container { width: 100%; }                                  &larr; Tailwind's own utility
+@media (min-width: 40rem) { .container { max-width: 40rem } } &larr; ...and its breakpoints
+@media (min-width: 48rem) { .container { max-width: 48rem } }
+...
+.container { margin-inline: auto; }                          &larr; YOURS, from globals.css</pre>
+    <p style="margin:0 0 16px;">They happen not to collide &mdash; different properties &mdash; so it works today. But hand-writing a class that Tailwind also generates is a race you win only by luck: the day you both set the same property, whichever rule is printed last wins. In Tailwind v4 the supported way to extend a built-in utility is <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">@utility</code>:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">/* app/globals.css &mdash; replaces .container { @apply mx-auto; } */
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+}</pre>
+    <p style="margin:0 0 16px;">That <em>extends</em> the real utility instead of competing with it. I added <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">padding-inline</code> because you almost certainly want it: Tailwind&rsquo;s <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">container</code> ships with <strong>no horizontal padding and no centering</strong> &mdash; that surprises everyone coming from Bootstrap &mdash; so right now your text touches the screen edge on a phone.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">7. It isn&rsquo;t used yet</h3>
+    <p style="margin:0 0 16px;">Nothing imports <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">Container</code> &mdash; <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">HeaderMain</code> and <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">FooterMain</code> still hand-write <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&lt;div className="container"&gt;</code>. Swapping them over is the point of the exercise:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">&lt;div className="container lg:flex lg:justify-between lg:items-center lg:gap-4"&gt;
+&lt;Container className="lg:flex lg:justify-between lg:items-center lg:gap-4"&gt;</pre>
+    <p style="margin:0 0 16px;">This is also the honest answer to &ldquo;does <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">Container</code> earn its keep?&rdquo; &mdash; with two call sites, barely. It pays off the moment you want to change the page width everywhere at once, which is exactly the kind of thing you <em>will</em> want. Fine to keep.</p>
+
+    <div style="border-left:3px solid #2563eb; background:#eff6ff; padding:14px 18px; border-radius:0 6px 6px 0; margin:20px 0 0;">
+      <strong>Next step:</strong> hover <code>ComponentProps&lt;"div"&gt;</code> in VS Code and press <kbd>F12</kbd> to jump into React&rsquo;s type definitions. Seeing that these are just ordinary types someone wrote in a <code>.d.ts</code> file &mdash; not compiler magic &mdash; is the moment TypeScript stops feeling like a wall.
+    </div>
+
+    <p style="margin:18px 0 0; font-size:13px; color:#8a8a84;">Sources: <code>node_modules/@types/react/index.d.ts</code> (ComponentProps, ReactNode) &middot; <a href="https://tailwindcss.com/docs/max-width" style="color:#8a8a84;">Tailwind CSS container &amp; max-width docs</a> &middot; errors reproduced with <code>npx tsc --noEmit</code>; duplicate <code>.container</code> rules confirmed by reading the compiled stylesheet from the running dev server (Next.js 16.3.5, Tailwind v4).</p>
+
+
+    <p style="margin:20px 0 0; font-size:12px;"><a href="#contents" style="color:#8a8a84; text-decoration:none;">&uarr; Back to contents</a></p>
+  </section>
+
+  <section id="entry-7" style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px; scroll-margin-top:20px;">
+
+    <div style="font-size:12px; color:#8a8a84; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">#7 &middot; 2026-09-21 &middot; Hydration</div>
+    <h2 style="margin:0 0 18px; font-size:21px; color:#111;">Hydration error again &mdash; <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:17px;">cz-shortcut-listen</code> on <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:17px;">&lt;body&gt;</code>. Why?</h2>
+
+    <p style="margin:0 0 16px;"><strong>Short answer:</strong> it&rsquo;s entry #3 all over again with a different extension &mdash; <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">cz</code> is <strong>ColorZilla</strong>. Two things went wrong: you copied its attribute into your JSX (on the wrong tag), and your <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">suppressHydrationWarning</code> is on <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&lt;html&gt;</code> but the mismatch is on <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&lt;body&gt;</code>.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">1. What I actually found in the served HTML</h3>
+    <p style="margin:0 0 12px;">I fetched your running dev server rather than guessing:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">&lt;html lang="en" class="oswald_... h-full antialiased" cz-shortcut-listen="true"&gt;
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                                     YOURS &mdash; layout.tsx line 29
+
+&lt;body class="min-h-full flex flex-col"&gt;
+      ^ no attribute here on the server &hellip; but ColorZilla adds one in the browser</pre>
+    <p style="margin:0 0 16px;">So the attribute you typed lands on <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&lt;html&gt;</code>, while the extension stamps <strong><code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&lt;body&gt;</code></strong>. You fixed a place that was never broken and left the broken place alone.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">2. Why <code style="font-size:15px;">suppressHydrationWarning</code> didn&rsquo;t save you this time</h3>
+    <p style="margin:0 0 12px;">From entry #3: <strong>it only works one level deep.</strong> That was the property that made it safe &mdash; and it&rsquo;s the same property that makes it miss here.</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">&lt;html suppressHydrationWarning&gt;     &larr; covers &lt;html&gt;'s OWN attributes
+  &lt;body&gt;                            &larr; a CHILD. not covered. warning fires here.
+    &lt;HeaderMain /&gt;                   &larr; also not covered (which is good)</pre>
+    <p style="margin:0 0 16px;">The overlay agrees with that reading &mdash; it points at <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">app/layout.tsx (31:7)</code>, and line 31 is your <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&lt;body&gt;</code>.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">3. How to read that red <code style="font-size:15px;">-</code> in the overlay</h3>
+    <p style="margin:0 0 12px;">The panel says <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">+ Client&nbsp;&nbsp;- Server</code>, and <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">cz-shortcut-listen="true"</code> is marked <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">-</code>. Read literally that says &ldquo;the server sent this&rdquo; &mdash; which is <em>not true</em>, as the fetch above proves.</p>
+    <div style="background:#f7f7f5; border:1px solid #e4e4df; border-radius:8px; padding:14px 18px; margin:0 0 16px; font-size:14.5px; color:#44443f;">
+      <em>Why it lies:</em> React does not keep a copy of what the server sent. At hydration time it reads <strong>the live DOM</strong> and calls that &ldquo;the server&rsquo;s HTML&rdquo;. ColorZilla edited the DOM in the gap before React woke up, so React sincerely reports the extension&rsquo;s attribute as the server&rsquo;s. <strong>&ldquo;Server&rdquo; in this overlay means &ldquo;what was in the page when React arrived&rdquo;</strong> &mdash; which includes anything an extension did.
+    </div>
+    <p style="margin:0 0 16px;">That is exactly why this error feels like your fault when it isn&rsquo;t, and why the message itself ends with &ldquo;It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.&rdquo; That line is the one that applies to you.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">4. The 10-second proof</h3>
+    <p style="margin:0 0 16px;">Open <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">localhost:3000</code> in an <strong>incognito window</strong> (extensions off by default). Error gone &rarr; an extension caused it, not your code. Do this <em>before</em> changing anything, every time you see a hydration warning about an attribute you don&rsquo;t recognise.</p>
+    <p style="margin:0 0 16px; color:#55554f; font-size:14.5px;"><strong>The tell:</strong> a vendor prefix you never typed. <code style="font-family:ui-monospace,Consolas,monospace;">cz-</code> = ColorZilla. <code style="font-family:ui-monospace,Consolas,monospace;">data-lt-</code> = LanguageTool. <code style="font-family:ui-monospace,Consolas,monospace;">data-gr-</code>, <code style="font-family:ui-monospace,Consolas,monospace;">data-new-gr-c-s-check-loaded</code> = Grammarly. <code style="font-family:ui-monospace,Consolas,monospace;">data-darkreader-</code> = Dark Reader. If you didn&rsquo;t type it, don&rsquo;t adopt it.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">5. The fix</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">&lt;html
+  lang="en"
+  className={`${oswaldSans.variable} ${librefranklin.variable} h-full antialiased`}
+  suppressHydrationWarning
+&gt;                                                &larr; cz-shortcut-listen line DELETED
+  &lt;body className="min-h-full flex flex-col" suppressHydrationWarning&gt;
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^
+                                             added &mdash; this is where extensions hit
+    &lt;HeaderMain /&gt;
+    &lt;main id="main"&gt;{children}&lt;/main&gt;
+    &lt;footer id="footer"&gt;&lt;/footer&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    <p style="margin:0 0 16px;">Two changes: <strong>delete line 29</strong>, and <strong>put <code style="font-family:ui-monospace,Consolas,monospace;">suppressHydrationWarning</code> on <code style="font-family:ui-monospace,Consolas,monospace;">&lt;body&gt;</code> as well</strong>. Both tags get it because extensions target both &mdash; that pairing is the standard root-layout pattern, and it&rsquo;s why libraries like <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">next-themes</code> tell you to add it there.</p>
+    <p style="margin:0 0 16px;"><strong>Still safe?</strong> Yes. One level deep means <code style="font-family:ui-monospace,Consolas,monospace;">&lt;body&gt;</code>&rsquo;s own attributes are ignored, but a genuine mismatch inside <code style="font-family:ui-monospace,Consolas,monospace;">HeaderMain</code>, <code style="font-family:ui-monospace,Consolas,monospace;">&lt;main&gt;</code> or <code style="font-family:ui-monospace,Consolas,monospace;">&lt;footer&gt;</code> is still reported in full. You are silencing two elements, not the app.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">6. The general rule, now that you&rsquo;ve hit it twice</h3>
+    <div style="background:#fff8e6; border-left:4px solid #e0a800; padding:14px 18px; border-radius:0 6px 6px 0; margin:0 0 20px;">
+      <strong>Never copy an attribute out of DevTools into your JSX to silence a warning.</strong> What you see in DevTools is the <em>live DOM</em> &mdash; your HTML <em>plus</em> whatever extensions did to it. Your JSX should only ever contain what <em>you</em> mean to send to every visitor on earth. If an attribute appeared without you typing it, the answer is <code style="font-family:ui-monospace,Consolas,monospace;">suppressHydrationWarning</code> on that element &mdash; never adopting the attribute.
+    </div>
+    <p style="margin:0 0 16px;">To see what you actually ship, look at <strong>View Source</strong> (the raw server response) rather than the Elements panel. Two different things, and this bug lives in the gap between them.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">7. Since I was in there &mdash; Logo is fixed</h3>
+    <p style="margin:0 0 12px;"><code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">npx tsc --noEmit</code> is clean, and the forwarding works &mdash; <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">fetchPriority="high"</code> now reaches the DOM instead of vanishing. Three leftovers:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">&lt;img alt="ASEK logo pricinpal" fetchPriority="high" loading="lazy" ...&gt;
+                                                    ^^^^^^^^^^^^^^^^
+                                                    these two disagree</pre>
+    <ul style="margin:0 0 16px; padding-left:22px;">
+      <li><code style="font-family:ui-monospace,Consolas,monospace;">fetchPriority="high"</code> means &ldquo;when you fetch it, hurry&rdquo;. <code style="font-family:ui-monospace,Consolas,monospace;">loading="lazy"</code> (the default) means &ldquo;don&rsquo;t fetch it until it nears the viewport&rdquo;. For a logo at the top of the page you want <code style="font-family:ui-monospace,Consolas,monospace;">loading="eager"</code> &mdash; the docs say use one <em>or</em> the other, and eager is the one that matters above the fold.</li>
+      <li><code style="font-family:ui-monospace,Consolas,monospace;">alt="ASEK logo pricinpal"</code> &mdash; the typo is still there, and Logo now defaults <code style="font-family:ui-monospace,Consolas,monospace;">alt</code> to <code style="font-family:ui-monospace,Consolas,monospace;">"ASEK"</code>, so you can delete the prop from the call site entirely.</li>
+      <li><code style="font-family:ui-monospace,Consolas,monospace;">app/layout.tsx</code> line 5 still imports <code style="font-family:ui-monospace,Consolas,monospace;">LinkTag</code> without using it.</li>
+    </ul>
+
+    <div style="border-left:3px solid #2563eb; background:#eff6ff; padding:14px 18px; border-radius:0 6px 6px 0; margin:20px 0 0;">
+      <strong>Next step:</strong> get into the habit of checking View Source after every change that touches <code>layout.tsx</code>. Knowing the difference between &ldquo;what I sent&rdquo; and &ldquo;what the browser has now&rdquo; is most of what hydration is about &mdash; and it&rsquo;s the one mental model that makes these errors stop being scary.
+    </div>
+
+    <p style="margin:18px 0 0; font-size:13px; color:#8a8a84;">Sources: bundled docs <code>node_modules/next/dist/docs/01-app/03-api-reference/02-components/image.md</code>, React hydration-error guidance at <code>nextjs.org/docs/messages/react-hydration-error</code> (Next.js 16.3.5) &middot; server HTML verified by fetching the running dev server; see also entry #3.</p>
+
+
+    <p style="margin:20px 0 0; font-size:12px;"><a href="#contents" style="color:#8a8a84; text-decoration:none;">&uarr; Back to contents</a></p>
+  </section>
+
+  <section id="entry-6" style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px; scroll-margin-top:20px;">
+
+    <div style="font-size:12px; color:#8a8a84; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">#6 &middot; 2026-09-21 &middot; Typing wrappers</div>
+    <h2 style="margin:0 0 18px; font-size:21px; color:#111;">Why does <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:17px;">&lt;Logo /&gt;</code> demand a <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:17px;">src</code> when the component already has one?</h2>
+
+    <p style="margin:0 0 16px;"><strong>One-sentence answer:</strong> your props type says &ldquo;Logo accepts everything <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">Image</code> accepts&rdquo; &mdash; and <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">src</code> is <em>required</em> on <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">Image</code>, so it&rsquo;s now required on Logo too, even though Logo ignores it.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">1. The exact error</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">components/layout/header/HeaderMain.tsx(10,12): error TS2741:
+  Property 'src' is missing in type '{ alt: string; loading: "eager"; }'
+  but required in type '{ src: string | StaticImport; alt: string; ... }'</pre>
+    <p style="margin:0 0 16px;">Read it as two halves. <strong>&ldquo;in type <code style="font-family:ui-monospace,Consolas,monospace;">{ alt, loading }</code>&rdquo;</strong> is what you <em>passed</em> at the call site. <strong>&ldquo;required in type <code style="font-family:ui-monospace,Consolas,monospace;">{ src, alt, ... }</code>&rdquo;</strong> is what Logo <em>asked for</em>. TypeScript is not confused about your <code style="font-family:ui-monospace,Consolas,monospace;">Image</code> &mdash; it never looked inside Logo at all.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">2. The idea worth keeping: a props type is a contract, not a description</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">type LogoProps = ComponentProps&lt;typeof Image&gt;;   // "callers must pass everything Image needs"
+
+const Logo = ({ alt }: LogoProps) =&gt; {           // "...but I only use alt"</pre>
+    <p style="margin:0 0 16px;">Those two lines disagree. The type is a <strong>promise to the outside world</strong> about what callers must hand you. Destructuring only <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">{ alt }</code> does <strong>not</strong> soften that promise &mdash; it just means you quietly bin everything else. TypeScript enforces the promise you wrote, not the one you meant.</p>
+    <div style="background:#f7f7f5; border:1px solid #e4e4df; border-radius:8px; padding:14px 18px; margin:0 0 16px; font-size:14.5px; color:#44443f;">
+      <em>Analogy:</em> the props type is the form on the counter. You printed &ldquo;passport number: required&rdquo; on it, then decided you&rsquo;d never read that box. The clerk still refuses the form until it&rsquo;s filled in. If you don&rsquo;t need it, take it off the form.
+    </div>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">3. Why <code style="font-size:15px;">LinkTag</code> works and <code style="font-size:15px;">Logo</code> doesn&rsquo;t</h3>
+    <p style="margin:0 0 12px;">Same <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">ComponentProps</code> line, opposite outcome &mdash; because the two components have opposite jobs:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">                    LinkTag                Logo
+who decides href/src?   the CALLER             the COMPONENT
+every use differs?      yes (/about, /blog)    no (always the one logo)
+so the prop should be   kept, required         removed from the type</pre>
+    <p style="margin:0 0 16px;"><code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">LinkTag</code> is a <strong>pass-through</strong> wrapper &mdash; it adds styling and forwards the decision. <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">Logo</code> is a <strong>preset</strong> wrapper &mdash; it has already made the decision. Copying the type from a pass-through into a preset is exactly where this went wrong.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">4. The fix: <code style="font-size:15px;">Omit</code> what the component owns</h3>
+    <p style="margin:0 0 12px;">Read <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">Omit&lt;T, "a" | "b"&gt;</code> as <strong>&ldquo;type T, minus these props&rdquo;</strong>:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">// components/layout/shared/Logo.tsx
+import Image from "next/image";
+import type { ComponentProps } from "react";
+
+type LogoProps = Omit&lt;ComponentProps&lt;typeof Image&gt;, "src" | "width" | "height" | "alt"&gt; &amp; {
+  alt?: string;
+};
+
+const Logo = ({ alt = "ASEK Logo", ...props }: LogoProps) =&gt; {
+  return (
+    &lt;Image
+      src="https://asek.academy/wp-content/uploads/2026/09/Main_Logo_Lock.svg"
+      width={230}
+      height={77}
+      alt={alt}
+      {...props}
+    /&gt;
+  );
+};
+
+export default Logo;</pre>
+    <p style="margin:0 0 12px;">Line by line:</p>
+    <ul style="margin:0 0 16px; padding-left:22px;">
+      <li><code style="font-family:ui-monospace,Consolas,monospace;">"src" | "width" | "height"</code> come off because <strong>Logo owns them</strong>. Nobody should be able to point your Logo at a different picture, and a caller passing <code style="font-family:ui-monospace,Consolas,monospace;">width={50}</code> without a matching height would squash it. Need a smaller logo? <code style="font-family:ui-monospace,Consolas,monospace;">className="w-32 h-auto"</code>.</li>
+      <li><code style="font-family:ui-monospace,Consolas,monospace;">"alt"</code> comes off and gets added back as <strong>optional</strong> (<code style="font-family:ui-monospace,Consolas,monospace;">alt?: string</code>) with a default. On <code style="font-family:ui-monospace,Consolas,monospace;">Image</code>, <code style="font-family:ui-monospace,Consolas,monospace;">alt</code> is required &mdash; rightly, since nobody can guess what an arbitrary photo shows. But a logo always shows the same thing, so the component can answer for itself. A caller can still override it.</li>
+      <li>Everything else &mdash; <code style="font-family:ui-monospace,Consolas,monospace;">className</code>, <code style="font-family:ui-monospace,Consolas,monospace;">loading</code>, <code style="font-family:ui-monospace,Consolas,monospace;">onClick</code>, <code style="font-family:ui-monospace,Consolas,monospace;">quality</code> &mdash; stays available, correctly typed, for free.</li>
+    </ul>
+    <p style="margin:0 0 16px; color:#55554f; font-size:14.5px;"><strong>Simpler alternative:</strong> a component with a fixed <code style="font-family:ui-monospace,Consolas,monospace;">src</code> is barely &ldquo;an Image&rdquo; any more. Writing the contract out by hand &mdash; <code style="font-family:ui-monospace,Consolas,monospace;">type LogoProps = { className?: string; alt?: string };</code> &mdash; is shorter and tells the reader at a glance what Logo can do. Both are correct; <code style="font-family:ui-monospace,Consolas,monospace;">Omit</code> teaches you more.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">5. The second bug &mdash; the one that doesn&rsquo;t shout</h3>
+    <p style="margin:0 0 12px;">You wrote <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&lt;Logo alt="..." loading="eager" /&gt;</code>. I fetched the running page &mdash; here is the actual HTML it served:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">&lt;img alt="ASEK logo pricinpal" loading="lazy" width="230" height="77" ...&gt;
+                                        ^^^^^^^^^^^^^^^^
+                                        your eager vanished</pre>
+    <p style="margin:0 0 16px;">Because the old <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">({ alt })</code> caught <code style="font-family:ui-monospace,Consolas,monospace;">alt</code> and dropped the rest on the floor. The missing <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">...props</code> / <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">{...props}</code> pair is the real fix; the <code style="font-family:ui-monospace,Consolas,monospace;">src</code> error just happened to be the loud one. <strong>This is the failure mode to remember about wrapper components: a prop you forget to forward fails in total silence.</strong> When a prop &ldquo;does nothing&rdquo;, check the wrapper before you doubt the library &mdash; and check the rendered HTML, not the JSX.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">6. Correction from entry #5: <code style="font-size:15px;">priority</code> is deprecated</h3>
+    <p style="margin:0 0 12px;">I told you to add <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">priority</code> to the logo. That advice is out of date for your version. From the bundled docs:</p>
+    <div style="background:#fff8e6; border-left:4px solid #e0a800; padding:14px 18px; border-radius:0 6px 6px 0; margin:0 0 16px;">
+      &ldquo;Starting with <strong>Next.js 16</strong>, the <code style="font-family:ui-monospace,Consolas,monospace;">priority</code> property has been <strong>deprecated</strong> in favor of the <code style="font-family:ui-monospace,Consolas,monospace;">preload</code> property&hellip; In most cases, you should use <code style="font-family:ui-monospace,Consolas,monospace;">loading="eager"</code> or <code style="font-family:ui-monospace,Consolas,monospace;">fetchPriority="high"</code> instead of <code style="font-family:ui-monospace,Consolas,monospace;">preload</code>.&rdquo;
+    </div>
+    <p style="margin:0 0 16px;"><strong>So <code style="font-family:ui-monospace,Consolas,monospace;">loading="eager"</code> &mdash; what you already wrote &mdash; is the current recommendation.</strong> Good instinct. It just never arrived, for the reason above. This is a live example of why the house rule says to check the bundled docs: nearly every tutorial online still says <code style="font-family:ui-monospace,Consolas,monospace;">priority</code>, because it was right until Next.js 16.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">7. Two small ones</h3>
+    <ul style="margin:0 0 16px; padding-left:22px;">
+      <li><code style="font-family:ui-monospace,Consolas,monospace;">alt="ASEK logo pricinpal"</code> &mdash; typo for &ldquo;principal&rdquo;, and it&rsquo;s read aloud by screen readers. Once <code style="font-family:ui-monospace,Consolas,monospace;">alt</code> has a default inside Logo you can delete it from the call site entirely. Alt text describes <em>what the image is</em>, so plain <code style="font-family:ui-monospace,Consolas,monospace;">"ASEK"</code> beats <code style="font-family:ui-monospace,Consolas,monospace;">"ASEK logo"</code> &mdash; the screen reader already announces &ldquo;image&rdquo;.</li>
+      <li><code style="font-family:ui-monospace,Consolas,monospace;">FooterMain.tsx</code> imports <code style="font-family:ui-monospace,Consolas,monospace;">Image</code> but never uses it &mdash; lint will flag it.</li>
+    </ul>
+
+    <div style="border-left:3px solid #2563eb; background:#eff6ff; padding:14px 18px; border-radius:0 6px 6px 0; margin:20px 0 0;">
+      <strong>Next step:</strong> after fixing Logo, reload and view source. Seeing <code>loading="eager"</code> actually appear in the HTML is the whole lesson in one glance &mdash; and &ldquo;check the rendered output&rdquo; is a habit that will save you hours.
+    </div>
+
+    <p style="margin:18px 0 0; font-size:13px; color:#8a8a84;">Sources: bundled docs <code>node_modules/next/dist/docs/01-app/03-api-reference/02-components/image.md</code> (&sect; preload, priority, loading; version history v16.0.0) &middot; error reproduced with <code>npx tsc --noEmit</code>, dropped prop confirmed by fetching the running dev server (Next.js 16.3.5).</p>
+
+
+    <p style="margin:20px 0 0; font-size:12px;"><a href="#contents" style="color:#8a8a84; text-decoration:none;">&uarr; Back to contents</a></p>
+  </section>
+
+  <section id="entry-5" style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px; scroll-margin-top:20px;">
+
+    <div style="font-size:12px; color:#8a8a84; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">#5 &middot; 2026-09-21 &middot; Project structure</div>
+    <h2 style="margin:0 0 18px; font-size:21px; color:#111;">What do you think about the <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:17px;">ui/</code> folder?</h2>
+
+    <p style="margin:0 0 16px;"><strong>Short answer:</strong> <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">components/ui/</code> is a real convention and you picked it correctly. But <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">ui/</code> carries a <em>meaning</em>, not just a location &mdash; and right now two of your files don&rsquo;t match that meaning. <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">HeaderMain</code> was never a <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">ui/</code> component, and <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">LinkTag</code> just stopped being one.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">0. First, credit where it&rsquo;s due</h3>
+    <ul style="margin:0 0 16px; padding-left:22px;">
+      <li><code style="font-family:ui-monospace,Consolas,monospace;">Components/Ui/</code> &rarr; <code style="font-family:ui-monospace,Consolas,monospace;">components/ui/</code>: done, and <code style="font-family:ui-monospace,Consolas,monospace;">git ls-files</code> shows the old casing was never committed &mdash; so no case-ghost in the repo. That Linux deploy bug is gone.</li>
+      <li><code style="font-family:ui-monospace,Consolas,monospace;">npx tsc --noEmit</code> now exits clean. Zero errors.</li>
+      <li>The header moved into <code style="font-family:ui-monospace,Consolas,monospace;">layout.tsx</code> next to <code style="font-family:ui-monospace,Consolas,monospace;">&lt;main&gt;</code> instead of inside a page. Exactly right.</li>
+    </ul>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">1. What <code style="font-size:15px;">ui/</code> actually means</h3>
+    <p style="margin:0 0 12px;">It does <strong>not</strong> mean &ldquo;my components&rdquo;. The convention (popularised by shadcn/ui, now near-universal) is: <strong><code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">ui/</code> holds generic primitives that know nothing about your app.</strong> Button, Input, Card, Badge, Modal, Link. No brand, no domain, no business rules.</p>
+    <div style="background:#f7f7f5; border:1px solid #e4e4df; border-radius:8px; padding:14px 18px; margin:0 0 16px; font-size:14.5px; color:#44443f;">
+      <em>The test:</em> &ldquo;Could I copy this file into a pizza-delivery app tomorrow, unchanged, and would it still make sense?&rdquo; <strong>Yes &rarr; <code style="font-family:ui-monospace,Consolas,monospace;">ui/</code>. No &rarr; somewhere else.</strong>
+    </div>
+    <div style="background:#f7f7f5; border:1px solid #e4e4df; border-radius:8px; padding:14px 18px; margin:0 0 16px; font-size:14.5px; color:#44443f;">
+      <em>Analogy:</em> <code style="font-family:ui-monospace,Consolas,monospace;">ui/</code> is the hardware store &mdash; screws, hinges, brackets, all anonymous. Your header is a piece of <em>furniture</em> you built from them. You don&rsquo;t store the finished bookshelf in the screw drawer.
+    </div>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">2. <code style="font-size:15px;">HeaderMain</code> fails the test</h3>
+    <p style="margin:0 0 16px;">It hardcodes your logo URL, your brand name, your five nav items. Drop it into a pizza app and it&rsquo;s nonsense. That makes it a <strong>layout</strong> component &mdash; part of the shell that wraps every page &mdash; not a primitive.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">3. And <code style="font-size:15px;">LinkTag</code> just failed it too</h3>
+    <p style="margin:0 0 12px;">This is the interesting one. Look at what the styles became:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">font-title tracking-wide block px-2 py-4 rounded-md text-center
+                          ^^^^^ ^^^^^^^^^^ ^^^^^^^^^^^
+                          these three only make sense inside a nav bar</pre>
+    <p style="margin:0 0 16px;">A generic link primitive is <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">inline</code> and sits in a sentence. Yours is <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">block</code>, centred, with 16px of vertical padding. Put it in a paragraph of text and it will shove the paragraph apart. <strong>It isn&rsquo;t a Link any more &mdash; it&rsquo;s a NavLink.</strong> So the folder says &ldquo;reusable anywhere&rdquo; while the code says &ldquo;only inside a header&rdquo;. That mismatch is what to fix.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">4. Two honest ways out</h3>
+    <p style="margin:0 0 12px;"><strong>(a) Keep it generic.</strong> Strip the nav-specific layout from the component and let the header pass it in:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">// components/ui/LinkTag.tsx  &mdash; only the universal bits stay
+className={"font-title tracking-wide transition-all duration-300 " + className}
+
+// the header supplies the layout
+&lt;LinkTag href="/about" className="block px-2 py-4 rounded-md text-center hover:bg-background/20"&gt;
+  About
+&lt;/LinkTag&gt;</pre>
+    <p style="margin:0 0 12px;"><strong>(b) Own it.</strong> Rename the file <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">NavLink.tsx</code> and move it next to the header. The name now tells the truth, and the header keeps its one-line call sites.</p>
+    <div style="background:#fff8e6; border-left:4px solid #e0a800; padding:14px 18px; border-radius:0 6px 6px 0; margin:0 0 20px;">
+      <strong>I&rsquo;d take (b) today.</strong> You have exactly one place that uses links so far. <strong>You extract a shared primitive on the <em>third</em> use, not the first</strong> &mdash; before that you&rsquo;re guessing what the other two will need, and you guess wrong. When a second and third spot genuinely need a styled link, <em>that</em> is the moment a real <code style="font-family:ui-monospace,Consolas,monospace;">ui/LinkTag</code> is born, and it&rsquo;ll be shaped by facts instead of hope.
+    </div>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">5. The structure I&rsquo;d aim at</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">components/
+  ui/                    &larr; anonymous primitives (Button, Card, Input)
+  layout/                &larr; the shell around every page
+    header/
+      HeaderMain.tsx
+      NavLink.tsx
+    FooterMain.tsx
+  features/              &larr; later: EventCard, TraineeList, FeedPost</pre>
+    <p style="margin:0 0 16px;">Three drawers, and each one answers a different question: <strong>ui</strong> = &ldquo;what is it made of&rdquo;, <strong>layout</strong> = &ldquo;where does it sit on every page&rdquo;, <strong>features</strong> = &ldquo;what does it know about my business&rdquo;. Your <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">MyAppToDoList.md</code> (feed, trainee list, events) is a <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">features/</code> shopping list.</p>
+    <p style="margin:0 0 16px; color:#55554f; font-size:14.5px;"><strong>On <code style="font-family:ui-monospace,Consolas,monospace;">header/</code> holding one file:</strong> normally premature &mdash; a folder earns its keep at about three files. But a real header grows a <code style="font-family:ui-monospace,Consolas,monospace;">MobileMenu</code> and a <code style="font-family:ui-monospace,Consolas,monospace;">NavLink</code> within days, so this one will pay off. Leave it.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">6. Use <code style="font-size:15px;">@/</code>, not <code style="font-size:15px;">../</code></h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">import LinkTag from "../LinkTag";                 // breaks the moment you move the file
+import LinkTag from "@/components/ui/LinkTag";     // survives any move</pre>
+    <p style="margin:0 0 16px;">Your <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">tsconfig.json</code> maps <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">@/*</code> to the project root already. A relative import is a promise about where <em>both</em> files live; the alias only cares about one of them. Since folder shuffling is exactly what you&rsquo;re doing this week, that matters.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">7. Three things I spotted while checking</h3>
+    <p style="margin:0 0 12px;"><strong>Nested <code style="font-family:ui-monospace,Consolas,monospace;">&lt;main&gt;</code> &mdash; invalid HTML.</strong> I fetched the running page:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">&lt;main id="main"&gt;      &larr; from app/layout.tsx
+  &lt;main&gt;Start&lt;/main&gt;  &larr; from app/page.tsx</pre>
+    <p style="margin:0 0 16px;">A document may have only one <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&lt;main&gt;</code>. Screen readers use it for &ldquo;skip to content&rdquo;, so two is genuinely confusing. Now that the layout owns it, pages should return a fragment or a <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&lt;div&gt;</code> &mdash; <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">export default function Home() { return &lt;&gt;Start&lt;/&gt;; }</code>.</p>
+    <p style="margin:0 0 12px;"><strong>Your remote logo works &mdash; but only because it&rsquo;s an SVG.</strong> Normally <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">next/image</code> refuses an external URL until you whitelist the host. I checked the served HTML:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">src="https://asek.academy/.../Main_Logo_Lock.svg"   &larr; raw URL
+src="/_next/image?url=..."                          &larr; what an optimised image looks like</pre>
+    <p style="margin:0 0 12px;">Next.js 16 sets <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">unoptimized</code> automatically when <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">src</code> ends in <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">.svg</code> (vectors resize losslessly, so there is nothing to optimise). Skipping the optimizer also skips the host check. <strong>Swap that logo for a <code style="font-family:ui-monospace,Consolas,monospace;">.png</code> from the same domain and it breaks instantly</strong> with <em>&ldquo;hostname asek.academy is not configured under images&rdquo;</em>. The fix, when that day comes:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">// next.config.ts
+const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [new URL("https://asek.academy/wp-content/uploads/**")],
+  },
+};</pre>
+    <p style="margin:0 0 16px;">Honestly, though: your own logo belongs in <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">public/</code>, not fetched from a WordPress site at runtime. Then it&rsquo;s <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">src="/Main_Logo_Lock.svg"</code>, no config, no network hop, no outage.</p>
+    <p style="margin:0 0 16px;"><strong>Small stuff:</strong> the dev log warns the logo is your Largest Contentful Paint &mdash; add <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">priority</code> to that <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&lt;Image&gt;</code> since it&rsquo;s above the fold. And <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">Image</code> and <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">LinkTag</code> are imported but unused in <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">app/page.tsx</code>, same for <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">LinkTag</code> in <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">app/layout.tsx</code> &mdash; <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">npm run lint</code> will flag all three.</p>
+
+    <div style="border-left:3px solid #2563eb; background:#eff6ff; padding:14px 18px; border-radius:0 6px 6px 0; margin:20px 0 0;">
+      <strong>Next step:</strong> pull the five nav items out of the JSX into an array and <code>.map()</code> over it. Five hand-written <code>&lt;li&gt;</code>s all pointing at <code>"/"</code> is five places to forget. One array is one place to edit &mdash; and it&rsquo;s where <code>key</code> finally earns its keep.
+    </div>
+
+    <p style="margin:18px 0 0; font-size:13px; color:#8a8a84;">Sources: bundled docs <code>node_modules/next/dist/docs/01-app/03-api-reference/02-components/image.md</code> (remotePatterns, dangerouslyAllowSVG), <code>.../01-getting-started/02-project-structure.md</code> (Next.js 16.3.5) &middot; nested <code>&lt;main&gt;</code> and the raw SVG URL verified by fetching the running dev server.</p>
+
+
+    <p style="margin:20px 0 0; font-size:12px;"><a href="#contents" style="color:#8a8a84; text-decoration:none;">&uarr; Back to contents</a></p>
+  </section>
+
+  <section id="entry-4" style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px; scroll-margin-top:20px;">
+
+    <div style="font-size:12px; color:#8a8a84; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">#4 &middot; 2026-09-21 &middot; Components &amp; Props</div>
+    <h2 style="margin:0 0 18px; font-size:21px; color:#111;">I wrote my first component &mdash; <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:17px;">LinkTag</code>. What&rsquo;s wrong with it?</h2>
+
+    <p style="margin:0 0 16px;"><strong>Short answer:</strong> the idea is right &mdash; wrapping <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">next/link</code> in your own component is a normal, good thing to do. But there are <strong>two real errors</strong> (TypeScript won&rsquo;t compile it, and the folder name will break a Linux deploy) and <strong>two design choices</strong> that will bite you in a week (<code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">text</code> instead of <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">children</code>, and a stray <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">key</code>).</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">0. What you wrote</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">// Components/Ui/LinkTag.tsx
+import Link from "next/link";
+
+const LinkTag = ({ url, text, ...props }) =&gt; {
+  return (
+    &lt;Link href={url} {...props}&gt;
+      {text}
+    &lt;/Link&gt;
+  );
+};
+
+export default LinkTag;
+
+// app/page.tsx
+&lt;LinkTag url="/" text="link" key="1" /&gt;</pre>
+    <p style="margin:0 0 16px;">First, the good news: <strong>this is exactly how a component works.</strong> A component is just a function that takes one object of values (<strong>props</strong>) and returns JSX. You named it with a capital letter (required &mdash; lowercase means &ldquo;plain HTML tag&rdquo; to React), you exported it, you imported it with the <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">@/</code> alias, and you forwarded the leftover props with <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">...props</code>. That last one is a genuinely good instinct.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">1. Error one: TypeScript refuses to compile it</h3>
+    <p style="margin:0 0 12px;">Run <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">npx tsc --noEmit</code> and you get:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">Components/Ui/LinkTag.tsx(3,20): error TS7031:
+  Binding element 'url' implicitly has an 'any' type.
+Components/Ui/LinkTag.tsx(3,25): error TS7031:
+  Binding element 'text' implicitly has an 'any' type.</pre>
+    <p style="margin:0 0 16px;">The file is <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">.tsx</code> and your <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">tsconfig.json</code> has <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">"strict": true</code>. Strict mode means every value must have a known type. You never told TypeScript what <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">url</code> and <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">text</code> are, so it refuses to guess.</p>
+    <div style="background:#fff8e6; border-left:4px solid #e0a800; padding:14px 18px; border-radius:0 6px 6px 0; margin:0 0 20px;">
+      <strong>Why <code style="font-family:ui-monospace,Consolas,monospace;">next dev</code> didn&rsquo;t complain.</strong> The dev server strips the types away and runs the JavaScript &mdash; it does not stop on type errors. <code style="font-family:ui-monospace,Consolas,monospace;">next build</code> <em>does</em>. So &ldquo;it renders in the browser&rdquo; is not proof that it compiles. Keep a second terminal on <code style="font-family:ui-monospace,Consolas,monospace;">npx tsc --noEmit --watch</code> and you&rsquo;ll catch these the moment you type them.
+    </div>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">2. Error two: <code style="font-size:15px;">Components/Ui/</code> will break on deploy</h3>
+    <p style="margin:0 0 12px;">You import it as <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">@/Components/Ui/LinkTag</code>. On Windows that works however you capitalise it &mdash; Windows treats <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">Components</code> and <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">components</code> as the same folder. <strong>Linux does not</strong>, and Vercel (and every CI server, and Docker) runs Linux.</p>
+    <div style="background:#f7f7f5; border:1px solid #e4e4df; border-radius:8px; padding:14px 18px; margin:0 0 16px; font-size:14.5px; color:#44443f;">
+      <em>Analogy:</em> Windows is a friendly receptionist who finds &ldquo;mr. smith&rdquo; when you ask for &ldquo;Mr. Smith&rdquo;. Linux is a filing cabinet &mdash; wrong case, no such file, build fails. This is the classic &ldquo;works on my machine&rdquo; bug, and it only shows up the day you deploy.
+    </div>
+    <p style="margin:0 0 16px;">The fix is a habit, not a rule: <strong>lowercase folder names</strong> (<code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">components/ui/</code>), <strong>PascalCase for component files</strong> (<code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">LinkTag.tsx</code>). That&rsquo;s what the Next.js docs and almost every codebase do, so imports stay predictable.</p>
+    <p style="margin:0 0 16px; color:#55554f; font-size:14.5px;"><strong>Gotcha when you rename:</strong> git on Windows does not notice a pure case change. You need two steps &mdash; <code style="font-family:ui-monospace,Consolas,monospace;">git mv Components tmp</code> then <code style="font-family:ui-monospace,Consolas,monospace;">git mv tmp components</code> &mdash; otherwise the old casing stays in the repo and Linux still breaks.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">3. Design trap: <code style="font-size:15px;">text</code> should be <code style="font-size:15px;">children</code></h3>
+    <p style="margin:0 0 12px;">Your version can only ever render a string:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">&lt;LinkTag url="/events" text="Events" /&gt;                 // fine
+
+&lt;LinkTag url="/events" text={&lt;&gt;&lt;Icon /&gt; Events&lt;/&gt;} /&gt;   // works, but awkward
+&lt;LinkTag href="/events"&gt;&lt;Icon /&gt; Events&lt;/LinkTag&gt;         // what you actually want</pre>
+    <p style="margin:0 0 12px;">React hands every component a free prop called <strong><code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">children</code></strong>: whatever sits <em>between</em> the opening and closing tags arrives there automatically. It costs you nothing and it accepts text, an icon, an <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&lt;Image&gt;</code>, or all three at once.</p>
+    <p style="margin:0 0 16px;">The same argument applies to <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">url</code> &rarr; <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">href</code>. Renaming a prop means everyone reading the code (including you in three weeks) has to learn a private vocabulary. <strong>Rule of thumb: when you wrap something, keep that thing&rsquo;s prop names.</strong> Then your component is a drop-in replacement for <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&lt;Link&gt;</code> and you never have to remember which name goes where.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">4. <code style="font-size:15px;">key="1"</code> does nothing here</h3>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">&lt;LinkTag url="/" text="link" key="1" /&gt;   // the key is pointless &mdash; delete it</pre>
+    <p style="margin:0 0 12px;"><code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">key</code> is <strong>only</strong> for siblings that come out of an array &mdash; a <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">.map()</code>. It is React&rsquo;s way of telling which item is which when the list reorders, so it can move a DOM node instead of rebuilding it. One hand-written element needs no key.</p>
+    <p style="margin:0 0 12px;">Two things people get wrong about it:</p>
+    <ul style="margin:0 0 16px; padding-left:22px;">
+      <li><strong><code style="font-family:ui-monospace,Consolas,monospace;">key</code> never reaches your component.</strong> React consumes it and strips it out. Inside <code style="font-family:ui-monospace,Consolas,monospace;">LinkTag</code>, <code style="font-family:ui-monospace,Consolas,monospace;">props.key</code> is <code style="font-family:ui-monospace,Consolas,monospace;">undefined</code> &mdash; your <code style="font-family:ui-monospace,Consolas,monospace;">{...props}</code> spread cannot forward it even if you wanted to.</li>
+      <li><strong>Keys must be stable and unique among siblings</strong> &mdash; an id from your data, not the array index, and never a hardcoded <code style="font-family:ui-monospace,Consolas,monospace;">"1"</code>.</li>
+    </ul>
+    <p style="margin:0 0 16px;">Where you <em>will</em> need it, very soon, is your nav:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">{navItems.map((item) =&gt; (
+  &lt;LinkTag key={item.href} href={item.href}&gt;{item.label}&lt;/LinkTag&gt;
+))}</pre>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">5. The fixed component</h3>
+    <p style="margin:0 0 12px;">The trick for typing a wrapper is <strong><code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">ComponentProps&lt;typeof Link&gt;</code></strong> &mdash; read it as &ldquo;whatever props <code style="font-family:ui-monospace,Consolas,monospace;">Link</code> accepts&rdquo;. You inherit <code style="font-family:ui-monospace,Consolas,monospace;">href</code>, <code style="font-family:ui-monospace,Consolas,monospace;">children</code>, <code style="font-family:ui-monospace,Consolas,monospace;">className</code>, <code style="font-family:ui-monospace,Consolas,monospace;">target</code>, <code style="font-family:ui-monospace,Consolas,monospace;">prefetch</code>, <code style="font-family:ui-monospace,Consolas,monospace;">replace</code> &mdash; all of it, for free, and it stays correct when Next.js updates.</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">// components/ui/LinkTag.tsx
+import Link from "next/link";
+import type { ComponentProps } from "react";
+
+type LinkTagProps = ComponentProps&lt;typeof Link&gt;;
+
+export default function LinkTag({ className = "", children, ...props }: LinkTagProps) {
+  return (
+    &lt;Link
+      className={"underline underline-offset-4 hover:no-underline " + className}
+      {...props}
+    &gt;
+      {children}
+    &lt;/Link&gt;
+  );
+}</pre>
+    <p style="margin:0 0 16px;">Used like this:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">&lt;LinkTag href="/"&gt;Startseite&lt;/LinkTag&gt;
+&lt;LinkTag href="/events" className="font-bold"&gt;Events&lt;/LinkTag&gt;
+&lt;LinkTag href="https://example.com" target="_blank"&gt;Extern&lt;/LinkTag&gt;</pre>
+    <p style="margin:0 0 16px;"><strong>Notice the order of the spread.</strong> <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">className</code> is pulled out by the destructuring, so it is <em>no longer inside</em> <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">...props</code> &mdash; the caller&rsquo;s classes get appended to yours instead of replacing them. Had you written <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&lt;Link {...props} className="underline"&gt;</code>, the spread would come first and your hardcoded default would silently override everything the caller passes. <strong>In JSX, the last one wins.</strong></p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">6. If you really want to keep <code style="font-size:15px;">url</code> and <code style="font-size:15px;">text</code></h3>
+    <p style="margin:0 0 12px;">You can &mdash; just type them properly. <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">Omit</code> removes props from a type, <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">&amp;</code> adds your own:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">import Link from "next/link";
+import type { ComponentProps } from "react";
+
+type LinkTagProps = Omit&lt;ComponentProps&lt;typeof Link&gt;, "href" | "children"&gt; &amp; {
+  url: string;
+  text: string;
+};
+
+export default function LinkTag({ url, text, ...props }: LinkTagProps) {
+  return &lt;Link href={url} {...props}&gt;{text}&lt;/Link&gt;;
+}</pre>
+    <p style="margin:0 0 16px;">This compiles, and it is a good way to <em>learn</em> <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">Omit</code>. For real work I&rsquo;d still take version 5.</p>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">7. Two small things in <code style="font-size:15px;">app/page.tsx</code></h3>
+    <ul style="margin:0 0 16px; padding-left:22px;">
+      <li><code style="font-family:ui-monospace,Consolas,monospace;">import Image from "next/image"</code> is unused &mdash; <code style="font-family:ui-monospace,Consolas,monospace;">npm run lint</code> will flag it. TypeScript stayed quiet because <code style="font-family:ui-monospace,Consolas,monospace;">noUnusedLocals</code> is off in your tsconfig.</li>
+      <li><code style="font-family:ui-monospace,Consolas,monospace;">&lt;main&gt;&lt;header&gt;</code> is inside out. A site <code style="font-family:ui-monospace,Consolas,monospace;">&lt;header&gt;</code> belongs in <code style="font-family:ui-monospace,Consolas,monospace;">app/layout.tsx</code>, <em>next to</em> <code style="font-family:ui-monospace,Consolas,monospace;">&lt;main&gt;</code> rather than inside it &mdash; then it renders once for every page instead of being re-declared on each one. <code style="font-family:ui-monospace,Consolas,monospace;">&lt;main&gt;</code> means &ldquo;the unique content of this page&rdquo;.</li>
+    </ul>
+
+    <h3 style="margin:24px 0 8px; font-size:16px; color:#111;">8. Bonus for later: typed routes</h3>
+    <p style="margin:0 0 12px;">Next.js 16 can check your <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">href</code> strings against the routes that actually exist &mdash; <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">href="/evnets"</code> becomes a type error instead of a 404 in production. It is stable now (no longer <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">experimental.typedRoutes</code>) and currently <strong>off</strong> in your <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">next.config.ts</code>:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">const nextConfig: NextConfig = {
+  typedRoutes: true,
+};</pre>
+    <p style="margin:0 0 16px;">Turn it on and a wrapper that takes <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">href</code> as a plain <code style="background:#f0f0ec; padding:1px 5px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:14px;">string</code> stops compiling. The docs&rsquo; answer is a generic:</p>
+    <pre style="background:#1c1c1a; color:#e8e8e3; padding:18px 20px; border-radius:8px; overflow-x:auto; font-family:ui-monospace,Consolas,monospace; font-size:13.5px; line-height:1.6; margin:0 0 16px;">import type { Route } from "next";
+
+function Card&lt;T extends string&gt;({ href }: { href: Route&lt;T&gt; | URL }) {
+  return &lt;Link href={href}&gt;&lt;div&gt;My Card&lt;/div&gt;&lt;/Link&gt;;
+}</pre>
+    <p style="margin:0 0 16px; color:#55554f; font-size:14.5px;">My advice: leave it off for now. Generics are a distraction while props are still new. Come back once the app has a handful of real routes &mdash; that&rsquo;s when typo-proof links start paying for themselves.</p>
+
+    <div style="border-left:3px solid #2563eb; background:#eff6ff; padding:14px 18px; border-radius:0 6px 6px 0; margin:20px 0 0;">
+      <strong>Next step:</strong> build a <code>Navbar</code> that takes an array of <code>{ href, label }</code> and <code>.map()</code>s it into <code>&lt;LinkTag&gt;</code>s, then render it from <code>app/layout.tsx</code>. You&rsquo;ll exercise <code>children</code>, <code>key</code> and prop typing all at once &mdash; and it&rsquo;s the first real piece of your trainee app&rsquo;s UI.
+    </div>
+
+    <p style="margin:18px 0 0; font-size:13px; color:#8a8a84;">Sources: bundled docs <code>node_modules/next/dist/docs/01-app/03-api-reference/02-components/link.md</code>, <code>.../05-config/02-typescript.md</code>, <code>.../05-config/01-next-config-js/typedRoutes.md</code> (Next.js 16.3.5) &middot; errors verified locally with <code>npx tsc --noEmit</code>.</p>
+
+
+    <p style="margin:20px 0 0; font-size:12px;"><a href="#contents" style="color:#8a8a84; text-decoration:none;">&uarr; Back to contents</a></p>
+  </section>
+
+  <section id="entry-3" style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px; scroll-margin-top:20px;">
 
     <div style="font-size:12px; color:#8a8a84; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">#3 &middot; 2026-09-20 &middot; Hydration</div>
     <h2 style="margin:0 0 18px; font-size:21px; color:#111;">Why are <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:17px;">suppressHydrationWarning</code> and <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:17px;">data-lt-installed</code> important?</h2>
@@ -114,10 +1086,12 @@ to type 'boolean | undefined'.</pre>
 
     <p style="margin:20px 0 0; font-size:13px; color:#8a8a84;">Verified against the bundled guide <code style="font-family:ui-monospace,Consolas,monospace;">01-app/02-guides/preventing-flash-before-hydration.md</code> and the React <code style="font-family:ui-monospace,Consolas,monospace;">hydrateRoot</code> / common-components reference &middot; Next.js 16.3.5, React 19.2.8.</p>
 
+
+    <p style="margin:20px 0 0; font-size:12px;"><a href="#contents" style="color:#8a8a84; text-decoration:none;">&uarr; Back to contents</a></p>
   </section>
 
 
-  <section style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px;">
+  <section id="entry-2" style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px; scroll-margin-top:20px;">
 
     <div style="font-size:12px; color:#8a8a84; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">#2 &middot; 2026-09-20 &middot; Fonts</div>
     <h2 style="margin:0 0 18px; font-size:21px; color:#111;">How do I add a font to <code style="background:#f0f0ec; padding:2px 6px; border-radius:4px; font-family:ui-monospace,Consolas,monospace; font-size:18px;">layout.tsx</code>?</h2>
@@ -306,10 +1280,12 @@ export default function RootLayout({ children }: LayoutProps&lt;"/"&gt;) {
 
     <p style="margin:20px 0 0; font-size:13px; color:#8a8a84;">Verified against the bundled docs in <code style="font-family:ui-monospace,Consolas,monospace;">node_modules/next/dist/docs/01-app/01-getting-started/13-fonts.md</code> and <code style="font-family:ui-monospace,Consolas,monospace;">.../03-api-reference/02-components/font.md</code> &middot; Next.js 16.3.5, React 19.2.8, Tailwind CSS v4.</p>
 
+
+    <p style="margin:20px 0 0; font-size:12px;"><a href="#contents" style="color:#8a8a84; text-decoration:none;">&uarr; Back to contents</a></p>
   </section>
 
 
-  <section style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px;">
+  <section id="entry-1" style="background:#fff; border:1px solid #e4e4df; border-radius:10px; padding:24px 28px; margin-bottom:24px; scroll-margin-top:20px;">
 
     <div style="font-size:12px; color:#8a8a84; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">#1 &middot; 2026-09-20 &middot; Project structure</div>
     <h2 style="margin:0 0 18px; font-size:21px; color:#111;">How do I organise the folder structure and assets in Next.js?</h2>
@@ -432,10 +1408,14 @@ import Button from '../../components/Button' // fragile</pre>
 
     <p style="margin:18px 0 0; font-size:13px; color:#8a8a84;">Sources: bundled docs <code>node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md</code>, <code>.../12-images.md</code>, <code>.../13-fonts.md</code>, <code>.../03-file-conventions/public-folder.md</code>, <code>.../src-folder.md</code> (Next.js 16.3.5).</p>
 
+
+    <p style="margin:20px 0 0; font-size:12px;"><a href="#contents" style="color:#8a8a84; text-decoration:none;">&uarr; Back to contents</a></p>
   </section>
 
   <p style="text-align:center; color:#a0a09a; font-size:13px; margin:40px 0 0;">Written while learning &mdash; Next.js 16.3.5</p>
 
 </div>
+<a href="#top" aria-label="Go to top" title="Go to top" style="position:fixed; right:24px; bottom:24px; z-index:50; display:flex; align-items:center; justify-content:center; width:46px; height:46px; border-radius:50%; background:#1c1c1a; color:#e8e8e3; text-decoration:none; font-size:20px; line-height:1; box-shadow:0 2px 12px rgba(0,0,0,0.28); border:1px solid #33332f;">&uarr;</a>
+
 </body>
 </html>
