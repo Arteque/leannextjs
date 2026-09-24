@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Oswald, Libre_Franklin } from "next/font/google";
 import "./globals.css";
 
-import LinkTag from "@/components/layout/shared/LinkTag";
 import HeaderMain from "@/components/layout/header/HeaderMain";
+import FooterMain from "@/Components/layout/footer/FooterMain";
 
 const oswaldSans = Oswald({
   variable: "--font-oswald-sans",
@@ -34,7 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             {children}
           </main>
         </div>
-        <footer id="footer"></footer>
+        <FooterMain />
       </body>
     </html>
   );
