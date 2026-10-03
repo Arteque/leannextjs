@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 import { Oswald, Libre_Franklin } from "next/font/google";
+
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+
 import "./globals.css";
 
 import HeaderMain from "@/Components/organisms/HeaderMain";
 import FooterMain from "@/Components/organisms/FooterMain";
+
+config.autoAddCss = false;
 
 const oswaldSans = Oswald({
   variable: "--font-oswald-sans",
