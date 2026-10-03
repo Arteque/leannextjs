@@ -1,7 +1,7 @@
-import Link from "next/link";
+import InlineLink from "@/Components/atoms/links/InlineLink";
 import type { ComponentProps } from "react";
 
-type LinkTagProps = ComponentProps<typeof Link>;
+type LinkTagProps = ComponentProps<typeof InlineLink>;
 
 const LinkTag = ({
   className = "",
@@ -10,13 +10,13 @@ const LinkTag = ({
   ...props
 }: LinkTagProps) => {
   return (
-    <Link
+    <InlineLink
       className={`font-title tracking-wide block px-2 py-4 rounded-md text-center transition-all duration-300 hover:bg-background/20 ${className}`}
       href={href}
       {...props}
     >
       {children}
-    </Link>
+    </InlineLink>
   );
 };
 

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Oswald, Libre_Franklin } from "next/font/google";
 import "./globals.css";
 
-import HeaderMain from "@/components/layout/header/HeaderMain";
-import FooterMain from "@/Components/layout/footer/FooterMain";
+import HeaderMain from "@/Components/organisms/HeaderMain";
+import FooterMain from "@/Components/organisms/FooterMain";
 
 const oswaldSans = Oswald({
   variable: "--font-oswald-sans",

@@ -83,10 +83,70 @@
             margin: 0 0 12px 10px;
           "
         >
-          Contents &middot; 12 entries &middot; newest first
+          Contents &middot; 15 entries &middot; newest first
         </div>
         <ol style="margin: 0; padding: 0; list-style: none">
           <!-- NEW TOC LINKS GO DIRECTLY BELOW THIS LINE -->
+
+          <li style="margin: 0 0 2px">
+            <a
+              href="#entry-15"
+              style="
+                display: flex;
+                gap: 10px;
+                align-items: baseline;
+                padding: 7px 10px;
+                border-radius: 6px;
+                color: #1c1c1a;
+                text-decoration: none;
+                background: transparent;
+              "
+            >
+              <span style="flex: none; width: 26px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #a0a09a">15</span>
+              <span style="flex: none; width: 135px; font-size: 12px; color: #8a8a84">Icons</span>
+              <span style="font-size: 14px; color: #2563eb">How can I use Font Awesome in Next.js?</span>
+            </a>
+          </li>
+
+          <li style="margin: 0 0 2px">
+            <a
+              href="#entry-14"
+              style="
+                display: flex;
+                gap: 10px;
+                align-items: baseline;
+                padding: 7px 10px;
+                border-radius: 6px;
+                color: #1c1c1a;
+                text-decoration: none;
+                background: transparent;
+              "
+            >
+              <span style="flex: none; width: 26px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #a0a09a">14</span>
+              <span style="flex: none; width: 135px; font-size: 12px; color: #8a8a84">Project structure</span>
+              <span style="font-size: 14px; color: #2563eb">How do I set up an atomic design folder structure in components/?</span>
+            </a>
+          </li>
+
+          <li style="margin: 0 0 2px">
+            <a
+              href="#entry-13"
+              style="
+                display: flex;
+                gap: 10px;
+                align-items: baseline;
+                padding: 7px 10px;
+                border-radius: 6px;
+                color: #1c1c1a;
+                text-decoration: none;
+                background: transparent;
+              "
+            >
+              <span style="flex: none; width: 26px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #a0a09a">13</span>
+              <span style="flex: none; width: 135px; font-size: 12px; color: #8a8a84">Components</span>
+              <span style="font-size: 14px; color: #2563eb">Is my LinkTag &rarr; InlineLink &rarr; Link wrapper chain good practice?</span>
+            </a>
+          </li>
 
           <li style="margin: 0 0 2px">
             <a
@@ -555,6 +615,427 @@
       </nav>
 
       <!-- NEW ENTRIES GO DIRECTLY BELOW THIS LINE -->
+
+      <section
+        id="entry-15"
+        style="background: #fff; border: 1px solid #e4e4df; border-radius: 10px; padding: 24px 28px; margin-bottom: 24px; scroll-margin-top: 20px"
+      >
+        <div style="font-size: 12px; color: #8a8a84; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px">
+          #15 &middot; 2026-10-03 &middot; Icons
+        </div>
+        <h2 style="margin: 0 0 18px; font-size: 21px; color: #111">
+          How can I use Font Awesome in Next.js?
+        </h2>
+
+        <p style="margin: 0 0 16px">
+          <strong>Short answer:</strong> install the Font Awesome <em>React</em> packages, add three setup lines to
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">app/layout.tsx</code>, then write
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">&lt;FontAwesomeIcon icon={faHouse} /&gt;</code> anywhere. It works in Server Components, so you don&rsquo;t need
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">"use client"</code>.
+          (Font Awesome 7.3, react-fontawesome 3.5, Next.js 16.3.5.)
+        </p>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">First, which way? Skip the CDN link</h3>
+        <p style="margin: 0 0 16px">
+          Many tutorials paste a <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">&lt;link&gt;</code> to Font Awesome&rsquo;s CDN, often in
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">pages/_document.js</code>. That&rsquo;s the <strong>old Pages Router</strong> way, and it makes every visitor download a font
+          containing <em>every</em> icon just to show five. It&rsquo;s like buying the whole sticker album for one sticker.
+        </p>
+        <p style="margin: 0 0 16px">
+          The React packages turn each icon into a small inline <strong>SVG</strong> (an image written as code, right inside your HTML).
+          You import only the icons you use, so only those end up in your site.
+        </p>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">The packages, one line each</h3>
+        <ul style="margin: 0 0 16px; padding-left: 22px">
+          <li><code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">@fortawesome/fontawesome-svg-core</code>: the engine that turns icon data into SVG.</li>
+          <li><code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">@fortawesome/react-fontawesome</code>: the <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">&lt;FontAwesomeIcon&gt;</code> component.</li>
+          <li><code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">@fortawesome/free-solid-svg-icons</code>: the free &ldquo;solid&rdquo; icons (house, user, envelope&hellip;).</li>
+          <li><code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">@fortawesome/free-brands-svg-icons</code>: logos (GitHub, LinkedIn&hellip;). Only add it if you need brand icons.</li>
+        </ul>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Step 1: install</h3>
+        <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+npm install @fortawesome/fontawesome-svg-core @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons</pre>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Step 2: three lines in app/layout.tsx</h3>
+        <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+// app/layout.tsx (top of the file)
+import type { Metadata } from "next";
+import { Oswald, Libre_Franklin } from "next/font/google";
+import { config } from "@fortawesome/fontawesome-svg-core";       // NEW
+import "@fortawesome/fontawesome-svg-core/styles.css";            // NEW
+import "./globals.css";
+
+import HeaderMain from "@/components/organisms/HeaderMain";
+import FooterMain from "@/components/organisms/FooterMain";
+
+config.autoAddCss = false;                                        // NEW
+
+// ...the rest of your layout stays exactly the same</pre>
+        <p style="margin: 0 0 16px"><strong>Why each line?</strong></p>
+        <ul style="margin: 0 0 16px; padding-left: 22px">
+          <li><code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">styles.css</code>: the small stylesheet that sizes the icons. Importing it here puts it in the server-rendered HTML, so icons are the right size from the first frame.</li>
+          <li><code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">config.autoAddCss = false</code>: tells Font Awesome &ldquo;don&rsquo;t inject that CSS yourself, Next already has it.&rdquo; Otherwise you get it twice.</li>
+          <li>Put it <strong>above</strong> <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">globals.css</code> so your own styles come later in the file.</li>
+        </ul>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Step 3: use an icon</h3>
+        <p style="margin: 0 0 16px">
+          This pairs with entry #14: a new <strong>molecule</strong> made of your <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">InlineLink</code> atoms plus icons.
+        </p>
+        <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+// components/molecules/SocialLinks.tsx
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import InlineLink from "@/components/atoms/links/InlineLink";
+
+const SocialLinks = () => {
+  return (
+    &lt;ul className="flex gap-4"&gt;
+      &lt;li&gt;
+        &lt;InlineLink href="https://github.com" aria-label="GitHub"&gt;
+          &lt;FontAwesomeIcon icon={faGithub} className="text-2xl" /&gt;
+        &lt;/InlineLink&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;InlineLink href="https://linkedin.com" aria-label="LinkedIn"&gt;
+          &lt;FontAwesomeIcon icon={faLinkedin} className="text-2xl" /&gt;
+        &lt;/InlineLink&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  );
+};
+
+export default SocialLinks;</pre>
+        <p style="margin: 0 0 16px">
+          Then add <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">&lt;SocialLinks /&gt;</code> inside <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">FooterMain</code>
+          (with <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">import SocialLinks from "@/components/molecules/SocialLinks";</code> at the top).
+        </p>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Size and colour: treat icons like text</h3>
+        <p style="margin: 0 0 16px">
+          An icon is <strong>1em tall</strong> (as tall as the current font size) and uses the <strong>text colour</strong>.
+          So size and colour it like a word:
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">className="text-2xl text-orange-600"</code>.
+          Avoid <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">size-6</code> / <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">h-6</code>: Font Awesome&rsquo;s stylesheet sets the height itself, and Tailwind v4 utilities lose that fight.
+        </p>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Finding an icon&rsquo;s name</h3>
+        <p style="margin: 0 0 16px">
+          Search on <strong>fontawesome.com/icons</strong> and filter to <em>Free</em>. The name <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">envelope</code>
+          becomes <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">faEnvelope</code>: add <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">fa</code>, then CamelCase.
+          If it has a &ldquo;Brands&rdquo; label, import it from <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">free-brands-svg-icons</code>, not from solid.
+        </p>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Do I need a wrapper in atoms/icons/?</h3>
+        <p style="margin: 0 0 16px">
+          Not yet. <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">FontAwesomeIcon</code> already <em>is</em> an atom. Remember entry #13: a wrapper must earn its place.
+          Use <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">atoms/icons/</code> for your own custom SVG icons, or for a wrapper once you repeat the same styling everywhere.
+        </p>
+
+        <div style="background: #fef3c7; border-left: 3px solid #d97706; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 20px 0 0">
+          <strong>Common beginner mistakes</strong>
+          <ul style="margin: 8px 0 0; padding-left: 22px">
+            <li><strong>A giant icon flashes on screen when the page loads.</strong> You skipped Step 2: the CSS import and <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">autoAddCss = false</code>.</li>
+            <li><strong>Icon-only links with no words.</strong> A screen reader announces &ldquo;link&rdquo; and nothing else, because Font Awesome hides icons from screen readers on purpose. Give the link an <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">aria-label</code>, like in the example.</li>
+            <li><strong>Importing everything</strong>, e.g. <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">import { fas } from ...</code> plus <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">library.add(fas)</code>. That puts all ~1,400 icons into your site. Import icons one by one by name.</li>
+            <li><strong>Adding <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">"use client"</code> just for icons.</strong> Not needed. The icon renders to plain SVG on the server and sends no JavaScript to the browser.</li>
+          </ul>
+        </div>
+
+        <div style="background: #f4f4f0; border-left: 3px solid #8a8a84; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 20px 0 0">
+          <strong>Alternative worth knowing:</strong> the <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">react-icons</code> package includes the free Font Awesome icons
+          (<code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">react-icons/fa6</code>) with no CSS setup, and Next.js already optimises its imports for you.
+          The official packages above are the better choice if you want Font Awesome 7 or plan to buy Font Awesome Pro.
+        </div>
+
+        <div style="border-left: 3px solid #2563eb; background: #eff6ff; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 20px 0 0">
+          <strong>Next step:</strong> make your icons react on hover (<code>hover:text-orange-600</code> on the link) and look up Tailwind&rsquo;s
+          <code>group</code> / <code>group-hover:</code> to style the icon when its parent link is hovered.
+        </div>
+
+        <p style="margin: 18px 0 0; font-size: 13px; color: #8a8a84">
+          Sources: docs.fontawesome.com &ldquo;Use React with&hellip;&rdquo; (Next.js section); npm versions checked 2026-10-03;
+          bundled docs <code>node_modules/next/dist/docs/01-app/03-api-reference/05-config/01-next-config-js/optimizePackageImports.md</code> (Next.js 16.3.5).
+        </p>
+
+        <p style="margin: 20px 0 0; font-size: 12px">
+          <a href="#contents" style="color: #8a8a84; text-decoration: none">&uarr; Back to contents</a>
+        </p>
+      </section>
+
+      <section
+        id="entry-14"
+        style="background: #fff; border: 1px solid #e4e4df; border-radius: 10px; padding: 24px 28px; margin-bottom: 24px; scroll-margin-top: 20px"
+      >
+        <div style="font-size: 12px; color: #8a8a84; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px">
+          #14 &middot; 2026-10-03 &middot; Project structure
+        </div>
+        <h2 style="margin: 0 0 18px; font-size: 21px; color: #111">
+          How do I set up an atomic design folder structure in components/?
+        </h2>
+
+        <p style="margin: 0 0 16px">
+          <strong>Short answer:</strong> make three folders, <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">atoms/</code>,
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">molecules/</code> and <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">organisms/</code>, and sort each component by
+          <em>how many of your other components it is built from</em>. Skip the &ldquo;templates&rdquo; and &ldquo;pages&rdquo; levels:
+          in Next.js, <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">app/</code> already does those jobs.
+        </p>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">First, a correction: this isn&rsquo;t a Next.js feature</h3>
+        <p style="margin: 0 0 16px">
+          Atomic design is a way of <em>naming things</em>, invented by designer Brad Frost. Next.js doesn&rsquo;t know about it
+          and doesn&rsquo;t care. The official docs say Next.js is &ldquo;unopinionated about how you organize&rdquo;
+          files outside <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">app/</code>. That&rsquo;s good news: there&rsquo;s nothing to configure.
+          Folders are just folders, and the only thing that changes is your import paths.
+        </p>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Why bother?</h3>
+        <p style="margin: 0 0 16px">
+          Think of LEGO. <strong>Atoms</strong> are single bricks. <strong>Molecules</strong> are a few bricks snapped together
+          into something with one job, like a wheel. <strong>Organisms</strong> are whole parts of the model, like the car.
+          When your app grows, the folder tells you how big a piece is before you open the file, and it gives you a rule
+          for where each new file goes.
+        </p>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">The rule for each level</h3>
+        <ul style="margin: 0 0 16px; padding-left: 22px">
+          <li><strong>Atom:</strong> renders one basic thing and imports <em>none</em> of your own components. Example: a button, a logo, a link.</li>
+          <li><strong>Molecule:</strong> a small group of atoms with one job. Example: a nav list made of links.</li>
+          <li><strong>Organism:</strong> a whole section of a page that makes sense on its own. Example: the header or the footer.</li>
+          <li><strong>Template:</strong> the page skeleton. In Next.js that&rsquo;s <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">app/layout.tsx</code>. You don&rsquo;t need a folder for it yet.</li>
+          <li><strong>Page:</strong> real content in the skeleton. In Next.js that&rsquo;s <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">app/**/page.tsx</code>. <strong>Never</strong> create <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">components/pages/</code>: the name clashes with Next&rsquo;s old <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">pages/</code> router and will confuse you (and tutorials).</li>
+        </ul>
+        <p style="margin: 0 0 16px">
+          <strong>Golden rule:</strong> imports only point <em>down</em>. An organism may import molecules and atoms. An atom never imports a molecule.
+          If you want to break that rule, the file is in the wrong folder.
+        </p>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Your current files, sorted</h3>
+        <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+components/                  &larr; lowercase c!
+├── atoms/
+│   ├── Container.tsx        (one &lt;div&gt;)
+│   ├── Logo.tsx             (one &lt;Image&gt;)
+│   ├── icons/               (empty for now)
+│   └── links/
+│       ├── InlineLink.tsx   (one &lt;Link&gt;)
+│       └── LinkTag.tsx      (one &lt;Link&gt;, nav styling)
+├── molecules/
+│   └── MainNav.tsx          (a list of LinkTags)
+└── organisms/
+    ├── HeaderMain.tsx       (Logo + MainNav)
+    └── FooterMain.tsx       (the whole footer)</pre>
+        <p style="margin: 0 0 16px">
+          The old <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">layout/</code> folder (with <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">header/</code>, <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">footer/</code>, <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">shared/</code>) is gone after the move.
+          Keep each level flat until it has about 10 files, then group by kind (like <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">links/</code>).
+        </p>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Step 1: fix the folder casing first</h3>
+        <p style="margin: 0 0 16px">
+          On disk the folder is <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">Components</code>, but Git stores it as <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">components</code>.
+          It&rsquo;s worse now: Git lists your new files as <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">Components/atoms/</code>. If you commit them like that,
+          a Linux machine (like Vercel&rsquo;s build server) sees <strong>two different folders</strong>. Windows treats both spellings as the same name,
+          so rename in two steps in the VS Code file explorer:
+        </p>
+        <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+Components  &rarr;  components-tmp  &rarr;  components</pre>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Step 2: create the folders</h3>
+        <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+# PowerShell, from the project root
+New-Item -ItemType Directory components/molecules, components/organisms</pre>
+        <p style="margin: 0 0 16px">
+          Heads-up: Git ignores empty folders. They won&rsquo;t show up in <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">git status</code> until a file is inside. That&rsquo;s normal.
+        </p>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Step 3: move the files and fix the imports</h3>
+        <p style="margin: 0 0 16px">
+          Drag each file to its new folder in the VS Code explorer. When VS Code asks &ldquo;Update imports?&rdquo;, click <strong>Yes</strong>.
+          Then check that every import uses the <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">@/</code> alias and a lowercase <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">components</code>:
+        </p>
+        <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+// app/layout.tsx
+import HeaderMain from "@/components/organisms/HeaderMain";
+import FooterMain from "@/components/organisms/FooterMain";
+
+// app/page.tsx
+import LinkTag from "@/components/atoms/links/LinkTag";
+
+// components/organisms/HeaderMain.tsx
+import Logo from "@/components/atoms/Logo";
+import MainNav from "@/components/molecules/MainNav";
+
+// components/molecules/MainNav.tsx
+import LinkTag from "@/components/atoms/links/LinkTag";
+
+// components/atoms/links/LinkTag.tsx
+import InlineLink from "@/components/atoms/links/InlineLink";</pre>
+        <p style="margin: 0 0 16px">
+          <strong>Why <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">@/</code> instead of <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">../shared/Logo</code>?</strong>
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">@/</code> means &ldquo;the project root&rdquo; (set up in <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">tsconfig.json</code>), so the path stays correct
+          wherever the importing file lives. A relative <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">../</code> path breaks every time you move a file, which is exactly what you&rsquo;re doing now.
+        </p>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Step 4: let TypeScript check your work</h3>
+        <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+npx tsc --noEmit</pre>
+        <p style="margin: 0 0 16px">
+          No output means every import resolves. Right now it reports 3 errors: two &ldquo;differs only in casing&rdquo; errors (Step 1 fixes them) and
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">LinkTag.tsx</code> still importing <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">@/Components/ui/InlineLink</code>, a file you already moved (Step 3 fixes it).
+        </p>
+
+        <div style="background: #fef3c7; border-left: 3px solid #d97706; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 20px 0 0">
+          <strong>Common beginner mistake: arguing about the level.</strong>
+          &ldquo;Is this a molecule or an organism?&rdquo; can eat an afternoon. Use the import test: does it import any of your own components?
+          No &rarr; atom. A few atoms &rarr; molecule. Molecules or a whole page section &rarr; organism. If it&rsquo;s still unclear, pick one and move on.
+          Moving a file later is cheap.
+        </div>
+
+        <div style="border-left: 3px solid #2563eb; background: #eff6ff; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 20px 0 0">
+          <strong>Next step:</strong> build your first molecule from scratch, for example a <code>SocialLinks</code> row for the footer
+          made of <code>InlineLink</code> atoms, and drop it into the <code>FooterMain</code> organism.
+        </div>
+
+        <p style="margin: 18px 0 0; font-size: 13px; color: #8a8a84">
+          Sources: bundled docs <code>node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md</code> (Next.js 16.3.5),
+          &ldquo;Organizing your project&rdquo;; Brad Frost&rsquo;s <em>Atomic Design</em> methodology.
+        </p>
+
+        <p style="margin: 20px 0 0; font-size: 12px">
+          <a href="#contents" style="color: #8a8a84; text-decoration: none">&uarr; Back to contents</a>
+        </p>
+      </section>
+
+      <section
+        id="entry-13"
+        style="background: #fff; border: 1px solid #e4e4df; border-radius: 10px; padding: 24px 28px; margin-bottom: 24px; scroll-margin-top: 20px"
+      >
+        <div style="font-size: 12px; color: #8a8a84; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px">
+          #13 &middot; 2026-09-25 &middot; Components
+        </div>
+        <h2 style="margin: 0 0 18px; font-size: 21px; color: #111">
+          Is my LinkTag &rarr; InlineLink &rarr; Link wrapper chain good practice?
+        </h2>
+
+        <p style="margin: 0 0 16px">
+          <strong>Short answer:</strong> the <em>typing</em> is spot on, but
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">InlineLink</code> is a wrapper that does nothing, and its
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">href=""</code> default quietly hides bugs. Either give it a real job or
+          delete it and let <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">LinkTag</code> wrap <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">next/link</code> directly.
+        </p>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">What&rsquo;s good</h3>
+        <ul style="margin: 0 0 16px; padding-left: 22px">
+          <li><code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">ComponentProps&lt;typeof Link&gt;</code>: your wrapper accepts every prop
+            <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">Link</code> accepts (<code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">prefetch</code>, <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">target</code>, <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">aria-*</code>&hellip;) with zero extra typing.</li>
+          <li><code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">...props</code> is forwarded to the inner component, so nothing gets lost.</li>
+          <li><code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">className</code> is merged, not replaced, so callers can add classes.</li>
+        </ul>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">1. A wrapper must earn its place</h3>
+        <p style="margin: 0 0 16px">
+          Think of a wrapper like a travel adapter: useful only if it changes something.
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">InlineLink</code> takes the props and hands them to <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">Link</code> unchanged:
+          one extra file and one extra hop for no benefit. Also, the name says &ldquo;inline&rdquo;
+          (a link inside a sentence), but <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">LinkTag</code> immediately makes it
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">block</code>. The name and the use disagree.
+        </p>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">2. Don&rsquo;t give a required prop a default</h3>
+        <p style="margin: 0 0 16px">
+          The docs mark <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">href</code> as <strong>required</strong>. TypeScript already forces
+          every caller to pass it, so <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">href=""</code> never helps. If it <em>does</em> fire
+          (e.g. data from a CMS is missing), you get a link to the current page instead of an error.
+          That&rsquo;s a silent bug. Let it fail loudly.
+        </p>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">3. Only pull out what you change</h3>
+        <p style="margin: 0 0 16px">
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">LinkTag</code> destructures <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">href</code> and <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">children</code> just to pass
+          them straight back. <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">...props</code> already carries them. Destructure only
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">className</code>, because that&rsquo;s the one you modify.
+        </p>
+
+        <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+// Components/layout/shared/LinkTag.tsx
+import Link from "next/link";
+import type { ComponentProps } from "react";
+
+type LinkTagProps = ComponentProps&lt;typeof Link&gt;;
+
+export default function LinkTag({ className = "", ...props }: LinkTagProps) {
+  return (
+    &lt;Link
+      className={`font-title tracking-wide block px-2 py-4 rounded-md text-center transition-colors duration-300 hover:bg-background/20 ${className}`}
+      {...props}
+    /&gt;
+  );
+}</pre>
+
+        <p style="margin: 0 0 16px">
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">children</code> rides along inside <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">props</code>, so the self-closing
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">&lt;Link {...props} /&gt;</code> still renders the text. Usage doesn&rsquo;t change:
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">&lt;LinkTag href="/about"&gt;About&lt;/LinkTag&gt;</code>.
+        </p>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">If you want to keep InlineLink, give it a job</h3>
+        <p style="margin: 0 0 16px">For example: make it the styled link you use <em>inside paragraphs</em>, which also opens external URLs safely in a new tab.</p>
+        <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+// Components/ui/InlineLink.tsx
+import Link from "next/link";
+import type { ComponentProps } from "react";
+
+type InlineLinkProps = ComponentProps&lt;typeof Link&gt;;
+
+export default function InlineLink({ className = "", href, ...props }: InlineLinkProps) {
+  const isExternal = typeof href === "string" &amp;&amp; href.startsWith("http");
+
+  return (
+    &lt;Link
+      href={href}
+      className={`underline underline-offset-4 hover:text-foreground/70 ${className}`}
+      {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      {...props}
+    /&gt;
+  );
+}</pre>
+        <p style="margin: 0 0 16px">
+          Then <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">InlineLink</code> and <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">LinkTag</code> are <strong>siblings</strong>
+          (both wrap <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">Link</code>), not a chain.
+        </p>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Two smaller things</h3>
+        <ul style="margin: 0 0 16px; padding-left: 22px">
+          <li><strong>Class conflicts:</strong> <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">&lt;LinkTag className="py-2"&gt;</code> won&rsquo;t reliably beat
+            <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">py-4</code>. In Tailwind, the winner is decided by CSS order, not by which class comes last
+            in the string. The usual fix is the small <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">tailwind-merge</code> package (<code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">twMerge(base, className)</code>).</li>
+          <li><strong><code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">transition-all</code> &rarr; <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">transition-colors</code>:</strong> you only animate the background, so say so.</li>
+        </ul>
+
+        <div style="background: #fef3c7; border-left: 3px solid #d97706; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 20px 0 0">
+          <strong>A beginner trap you&rsquo;re already in: folder name casing.</strong>
+          Git has your files as <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">components/</code> (lowercase), but the folder on disk is
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">Components/</code>. <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">app/page.tsx</code> imports <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">@/components/...</code>, while
+          <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">LinkTag</code> imports <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">@/Components/...</code>. Windows ignores case, so it works for you.
+          Linux (and Vercel&rsquo;s build servers) does not &rarr; &ldquo;Module not found&rdquo; on deploy.
+          Pick one spelling (lowercase <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">components</code> is the convention) and use it everywhere.
+        </div>
+
+        <div style="border-left: 3px solid #2563eb; background: #eff6ff; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 20px 0 0">
+          <strong>Next step:</strong> highlight the current page in the menu with
+          <code>usePathname()</code>. That will be your first Client Component (<code>"use client"</code>).
+        </div>
+
+        <p style="margin: 18px 0 0; font-size: 13px; color: #8a8a84">
+          Sources: bundled docs <code>node_modules/next/dist/docs/01-app/03-api-reference/02-components/link.md</code> (Next.js 16.3.5).
+        </p>
+
+        <p style="margin: 20px 0 0; font-size: 12px">
+          <a href="#contents" style="color: #8a8a84; text-decoration: none">&uarr; Back to contents</a>
+        </p>
+      </section>
 
       <section
         id="entry-12"
