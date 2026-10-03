@@ -83,10 +83,70 @@
             margin: 0 0 12px 10px;
           "
         >
-          Contents &middot; 12 concepts &middot; newest first
+          Contents &middot; 15 concepts &middot; newest first
         </div>
         <ol style="margin: 0; padding: 0; list-style: none">
           <!-- NEW TOC LINKS GO DIRECTLY BELOW THIS LINE -->
+
+          <li style="margin: 0 0 2px">
+            <a
+              href="#entry-15"
+              style="
+                display: flex;
+                gap: 10px;
+                align-items: baseline;
+                padding: 7px 10px;
+                border-radius: 6px;
+                color: #1c1c1a;
+                text-decoration: none;
+                background: transparent;
+              "
+            >
+              <span style="flex: none; width: 26px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #a0a09a">15</span>
+              <span style="flex: none; width: 135px; font-size: 12px; color: #8a8a84">Images</span>
+              <span style="font-size: 14px; color: #2563eb">next/image</span>
+            </a>
+          </li>
+
+          <li style="margin: 0 0 2px">
+            <a
+              href="#entry-14"
+              style="
+                display: flex;
+                gap: 10px;
+                align-items: baseline;
+                padding: 7px 10px;
+                border-radius: 6px;
+                color: #1c1c1a;
+                text-decoration: none;
+                background: transparent;
+              "
+            >
+              <span style="flex: none; width: 26px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #a0a09a">14</span>
+              <span style="flex: none; width: 135px; font-size: 12px; color: #8a8a84">React</span>
+              <span style="font-size: 14px; color: #2563eb">Rendering Lists</span>
+            </a>
+          </li>
+
+          <li style="margin: 0 0 2px">
+            <a
+              href="#entry-13"
+              style="
+                display: flex;
+                gap: 10px;
+                align-items: baseline;
+                padding: 7px 10px;
+                border-radius: 6px;
+                color: #1c1c1a;
+                text-decoration: none;
+                background: transparent;
+              "
+            >
+              <span style="flex: none; width: 26px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: #a0a09a">13</span>
+              <span style="flex: none; width: 135px; font-size: 12px; color: #8a8a84">Data Fetching</span>
+              <span style="font-size: 14px; color: #2563eb">Fetching Data</span>
+            </a>
+          </li>
 
           <li style="margin: 0 0 2px">
             <a
@@ -333,6 +393,232 @@
       <!-- NEW ENTRIES GO DIRECTLY BELOW THIS LINE -->
 
       <section
+        id="entry-15"
+        style="background: #fff; border: 1px solid #e4e4df; border-radius: 10px; padding: 24px 28px; margin-bottom: 24px; scroll-margin-top: 20px"
+      >
+        <div style="font-size: 12px; color: #8a8a84; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px">
+          15 &middot; 2026-10-03 &middot; updated 2026-10-03 &middot; Images
+        </div>
+        <h2 style="margin: 0 0 18px; font-size: 21px; color: #111">next/image</h2>
+
+        <p style="margin: 0 0 16px"><strong>Concept.</strong> <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">&lt;Image&gt;</code> from <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">next/image</code> is a smarter <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">&lt;img&gt;</code>. It serves a resized, modern-format copy for each screen size, lazy-loads by default, and reserves the image's space before it arrives so the page doesn't jump (<em>layout shift</em>). In return it needs to know the image's <strong>shape</strong>: a statically imported file gives it that automatically; a URL string doesn't, so you pass <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">width</code> and <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">height</code> yourself.</p>
+        <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+// app/page.tsx
+import Image from "next/image";
+import hero from "@/public/hero.jpg";   // local: size read at build time
+
+export default function Page() {
+  return (
+    &lt;main&gt;
+      &lt;Image src={hero} alt="Mountains at sunrise" loading="eager" /&gt;
+
+      {/* remote: you supply the real pixel size (it sets the aspect ratio, not the display size) */}
+      &lt;Image
+        src="https://images.example.com/team.png"
+        alt="The team at the 2026 meetup"
+        width={1200}
+        height={800}
+        className="w-full h-auto"
+      /&gt;
+    &lt;/main&gt;
+  );
+}</pre>
+        <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+// next.config.ts -- remote hosts must be allowed explicitly
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [new URL("https://images.example.com/**")],
+  },
+};
+
+export default nextConfig;</pre>
+        <p style="margin: 0 0 16px">The pattern is matched <strong>part by part</strong>: protocol, hostname, port, path, and query string must all fit. <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">https://example.com/uploads/**</code> allows only that folder on that exact host &mdash; not <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">http://</code>, not <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">www.</code>, not URLs ending in <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">?v=2</code>. In a path, <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">*</code> is one segment and <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">**</code> is any depth; in a hostname, <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">**.example.com</code> allows subdomains. This list only governs <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">&lt;Image&gt;</code> &mdash; it has nothing to do with <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">fetch()</code> or CORS.</p>
+        <p style="margin: 0 0 16px">For the main image visible on load (a hero, a logo), use <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">loading="eager"</code> or <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">fetchPriority="high"</code>. The old <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">priority</code> prop is <strong>deprecated since Next.js 16</strong> (replaced by <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">preload</code>, which is rarely needed).</p>
+        <div style="background: #fef3c7; border-left: 3px solid #d97706; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 20px 0 0">
+          <strong>Common mistakes</strong>
+          <ul style="margin: 8px 0 0; padding-left: 22px">
+            <li><strong>Remote URL without <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">width</code>/<code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">height</code></strong> (or <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">fill</code>): TypeScript lets it through, then the page crashes at runtime with &ldquo;missing required width property&rdquo;.</li>
+            <li><strong>Forgetting <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">remotePatterns</code></strong>: &ldquo;hostname is not configured under images&rdquo;. Restart the dev server after editing <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">next.config.ts</code>.</li>
+            <li><strong><code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">loading="eager"</code> everywhere.</strong> It is only for images visible without scrolling. On a footer or a gallery further down it makes the browser download them all up front and slows the first paint &mdash; leave the default (<code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">lazy</code>).</li>
+            <li><strong>Vague <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">alt</code> on a linked image.</strong> When an image is the only thing inside a link, its <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">alt</code> <em>is</em> the link's name for screen readers &mdash; describe where it goes (&ldquo;Acme &ndash; home&rdquo;), not what it looks like (&ldquo;logo&rdquo;).</li>
+          </ul>
+        </div>
+        <div style="border-left: 3px solid #2563eb; background: #eff6ff; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 20px 0 0">
+          <strong>Next:</strong> the <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">fill</code> and <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">sizes</code> props, for images that stretch to their container.
+        </div>
+        <p style="margin: 18px 0 0; font-size: 13px; color: #8a8a84">
+          Next.js 16.3 &mdash; bundled docs <code>01-app/03-api-reference/02-components/image.md</code>.
+        </p>
+
+        <p style="margin: 20px 0 0; font-size: 12px">
+          <a href="#contents" style="color: #8a8a84; text-decoration: none">&uarr; Back to contents</a>
+        </p>
+      </section>
+
+      <section
+        id="entry-14"
+        style="background: #fff; border: 1px solid #e4e4df; border-radius: 10px; padding: 24px 28px; margin-bottom: 24px; scroll-margin-top: 20px"
+      >
+        <div style="font-size: 12px; color: #8a8a84; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px">
+          14 &middot; 2026-10-03 &middot; React
+        </div>
+        <h2 style="margin: 0 0 18px; font-size: 21px; color: #111">Rendering Lists</h2>
+
+        <p style="margin: 0 0 16px"><strong>Concept.</strong> React has no loop tag. To show a list, you turn an <strong>array of data</strong> into an <strong>array of JSX</strong> with <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">.map()</code>, and give each item a <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">key</code> (a unique, stable label React uses to tell items apart between renders). When the data arrives as one object with optional fields, list the field names you want and loop over that list. You don't need one <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">if</code> per field.</p>
+        <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+// components/LinkList.tsx
+type Profiles = { github?: string; linkedin?: string; mastodon?: string };
+
+const NAMES = ["github", "linkedin", "mastodon"] as const;
+
+export default function LinkList({ profiles }: { profiles: Profiles }) {
+  // keep the filled-in fields, as { name, url } objects
+  const links = NAMES.flatMap((name) =&gt; {
+    const url = profiles[name];
+    return url ? [{ name, url }] : [];
+  });
+
+  return (
+    &lt;ul&gt;
+      {links.map((link) =&gt; (
+        &lt;li key={link.name}&gt;
+          &lt;a href={link.url}&gt;{link.name}&lt;/a&gt;
+        &lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}</pre>
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Why flatMap, not filter + map</h3>
+        <p style="margin: 0 0 16px"><code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">NAMES.filter((n) =&gt; profiles[n]).map(...)</code> works in plain JavaScript. But TypeScript doesn't link the check inside <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">filter</code> to the later <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">profiles[n]</code> lookup, so <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">url</code> stays <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">string | undefined</code> and a required <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">href</code> prop rejects it. <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">flatMap</code> checks and builds in one step: return <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">[item]</code> to keep an item or <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">[]</code> to drop it, and the type is already narrowed to <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">string</code>.</p>
+
+        <div style="background: #fef3c7; border-left: 3px solid #d97706; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 20px 0 0">
+          <strong>Common mistakes</strong>
+          <ul style="margin: 8px 0 0; padding-left: 22px">
+            <li><strong>Returning an object without parentheses.</strong> In <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">(n) =&gt; { name: n }</code> the braces are read as a <em>function body</em>, so it returns <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">undefined</code>. Wrap the object instead: <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">(n) =&gt; ({ name: n })</code>.</li>
+            <li><strong>Misplaced parenthesis:</strong> <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">items.map(item) =&gt; (...)</code> should be <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">items.map((item) =&gt; (...))</code>. The whole arrow function goes <em>inside</em> <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">map( )</code>.</li>
+            <li><strong>Missing or index keys.</strong> Leaving out <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">key</code> triggers a console warning. Using the array index as the key breaks when items are reordered. Use something unique from the data, like an id or a name.</li>
+          </ul>
+        </div>
+        <div style="border-left: 3px solid #2563eb; background: #eff6ff; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 20px 0 0">
+          <strong>Next:</strong> conditional rendering &mdash; showing or hiding JSX with <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">&amp;&amp;</code> and the ternary <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">a ? b : c</code>.
+        </div>
+        <p style="margin: 18px 0 0; font-size: 13px; color: #8a8a84">
+          React 19.2 &mdash; <a href="https://react.dev/learn/rendering-lists" style="color: #8a8a84">react.dev/learn/rendering-lists</a>; type behaviour verified with <code>tsc --strict</code>.
+        </p>
+
+        <p style="margin: 20px 0 0; font-size: 12px">
+          <a href="#contents" style="color: #8a8a84; text-decoration: none">&uarr; Back to contents</a>
+        </p>
+      </section>
+
+      <section
+        id="entry-13"
+        style="background: #fff; border: 1px solid #e4e4df; border-radius: 10px; padding: 24px 28px; margin-bottom: 24px; scroll-margin-top: 20px"
+      >
+        <div style="font-size: 12px; color: #8a8a84; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px">
+          13 &middot; 2026-10-03 &middot; updated 2026-10-03 &middot; Data Fetching
+        </div>
+        <h2 style="margin: 0 0 18px; font-size: 21px; color: #111">Fetching Data</h2>
+
+        <p style="margin: 0 0 16px"><strong>Concept.</strong> In the App Router every component is a <strong>Server Component</strong> by default: it runs on the server, never in the browser. That means it can be an <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">async</code> function and simply <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">await fetch()</code> &mdash; no <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">useEffect</code>, no <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">useState</code>, no API route in between. The server fetches the data, turns it into HTML, and sends the finished result. API keys stay on the server, and the browser downloads no fetching code.</p>
+        <p style="margin: 0 0 16px">Wrap the slow part in <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">&lt;Suspense&gt;</code> and the rest of the page shows instantly, with a fallback in its place until the data arrives (this is called <em>streaming</em>).</p>
+        <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+// app/posts/page.tsx
+import { Suspense } from "react";
+
+type Post = { id: number; title: string };
+
+async function getPosts(): Promise&lt;Post[]&gt; {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=5");
+  // fetch does NOT throw on 404 / 500 -- check it yourself
+  if (!res.ok) throw new Error(`Failed to fetch posts: ${res.status}`);
+  return res.json();
+}
+
+async function PostList() {
+  const posts = await getPosts();
+  return (
+    &lt;ul&gt;
+      {posts.map((post) =&gt; (
+        &lt;li key={post.id}&gt;{post.title}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+
+export default function Page() {
+  return (
+    &lt;main&gt;
+      &lt;h1&gt;Posts&lt;/h1&gt;
+      &lt;Suspense fallback={&lt;p&gt;Loading posts...&lt;/p&gt;}&gt;
+        &lt;PostList /&gt;
+      &lt;/Suspense&gt;
+    &lt;/main&gt;
+  );
+}</pre>
+
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Fresh or cached?</h3>
+        <p style="margin: 0 0 16px"><code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">fetch</code> is <strong>not cached</strong> by default (since Next.js 15 &mdash; Next.js 13/14 cached everything, so older tutorials are wrong here). But there is a catch: if a page reads nothing request-specific (no <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">cookies()</code>, <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">headers()</code>, <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">searchParams</code>), <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">next build</code> pre-renders it once and the data is <strong>frozen into the HTML</strong>. Think of a printed newspaper: correct the morning it was printed, stale by the evening. Tell each request what you want:</p>
+        <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+// Fresh on every request (live prices, dashboards)
+await fetch(url, { cache: "no-store" });
+
+// Re-fetch at most once per hour (blog posts, product lists)
+await fetch(url, { next: { revalidate: 3600 } });
+
+// Fetch once, keep forever (data that never changes)
+await fetch(url, { cache: "force-cache" });</pre>
+        <p style="margin: 0 0 16px">These go in the <strong>options object</strong> (the second argument of <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">fetch</code>), as siblings of <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">headers</code> &mdash; not inside it. Headers are the message you send to the API. <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">cache</code> and <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">next</code> are instructions to Next.js itself:</p>
+        <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+const res = await fetch("https://api.example.com/settings", {
+  headers: {
+    Accept: "application/json",                  // sent to the API
+    Authorization: `Bearer ${process.env.API_TOKEN}`,
+  },
+  next: { revalidate: 86400 },                   // read by Next.js: refresh daily
+});</pre>
+        <p style="margin: 0 0 16px">A fetch in a <strong>layout</strong> (a site header, a footer) runs for every page under it. Use <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">no-store</code> there and every one of those pages is rebuilt on every request, so data that rarely changes should use <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">revalidate</code> instead.</p>
+        <p style="margin: 0 0 16px">These options belong to the default caching model. If <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">cacheComponents: true</code> is set in <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">next.config.ts</code>, the rules change: an uncached fetch <em>must</em> sit inside <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">&lt;Suspense&gt;</code>, and you opt into caching with the <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">"use cache"</code> directive plus <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">cacheLife()</code>.</p>
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Fetch where the data is used</h3>
+        <p style="margin: 0 0 16px">Identical <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">fetch</code> calls in one render are <strong>memoized</strong>: if three components request the same URL with the same options, the network is hit once. So a component can fetch its own data instead of a parent fetching it and passing it down through props. The parent doesn't even need to be <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">async</code>; a plain Server Component can render an async one.</p>
+        <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+// components/Footer.tsx -- not async, knows nothing about the API
+import ContactInfo from "./ContactInfo"; // async, fetches its own data
+
+export default function Footer() {
+  return (
+    &lt;footer&gt;
+      &lt;ContactInfo /&gt;
+    &lt;/footer&gt;
+  );
+}</pre>
+        <p style="margin: 0 0 16px">Fetch in a Client Component only when the data depends on what the user does in the browser (typing in a search box, infinite scroll). Use a library such as SWR or TanStack Query there, or pass an un-awaited promise from a Server Component and read it with React's <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">use()</code>.</p>
+
+        <div style="background: #fef3c7; border-left: 3px solid #d97706; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 20px 0 0">
+          <strong>Common mistakes</strong>
+          <ul style="margin: 8px 0 0; padding-left: 22px">
+            <li><strong>The old React habit:</strong> <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">"use client"</code> + <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">useEffect</code> + <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">useState</code> to load data on first render. It ships extra JavaScript, flashes an empty page, and exposes any API key to the browser.</li>
+            <li><strong>&ldquo;It worked in dev!&rdquo;</strong> <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">next dev</code> re-renders on every request, so build-time freezing never shows up there. Test with <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">next build &amp;&amp; next start</code>.</li>
+            <li><strong>Putting caching in <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">headers</code></strong> (<code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">headers: { "Cache-Control": "max-age=3600" }</code>). That only sends a note to the API; Next.js ignores it. Also, don't mix <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">cache: "no-store"</code> with <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">revalidate</code>: conflicting options are both ignored.</li>
+            <li><strong>Throwing from a fetch in the root layout.</strong> <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">error.tsx</code> does not catch errors in the layout of its own segment, so a failing header or footer fetch breaks <em>every</em> page (only <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">global-error.tsx</code> catches it). For non-essential data, catch the failure and <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">return null</code> instead.</li>
+            <li><strong>Calling your own API route from a Server Component</strong> (<code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">fetch("/api/posts")</code>). A relative URL has no host on the server, and it is a pointless extra hop &mdash; call the external API or your data function directly.</li>
+          </ul>
+        </div>
+        <div style="border-left: 3px solid #2563eb; background: #eff6ff; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 20px 0 0">
+          <strong>Next:</strong> add <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">loading.tsx</code> and <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">error.tsx</code> next to a page, so slow and failed fetches get a proper screen.
+        </div>
+        <p style="margin: 18px 0 0; font-size: 13px; color: #8a8a84">
+          Next.js 16.3 &mdash; bundled docs <code>01-app/01-getting-started/06-fetching-data.md</code>, <code>08-caching.md</code>, <code>02-guides/caching-without-cache-components.md</code>, <code>03-api-reference/04-functions/fetch.md</code>, <code>03-api-reference/03-file-conventions/error.md</code>.
+        </p>
+
+        <p style="margin: 20px 0 0; font-size: 12px">
+          <a href="#contents" style="color: #8a8a84; text-decoration: none">&uarr; Back to contents</a>
+        </p>
+      </section>
+
+      <section
         id="entry-12"
         style="background: #fff; border: 1px solid #e4e4df; border-radius: 10px; padding: 24px 28px; margin-bottom: 24px; scroll-margin-top: 20px"
       >
@@ -476,7 +762,7 @@ export default function IconLink() {
         style="background: #fff; border: 1px solid #e4e4df; border-radius: 10px; padding: 24px 28px; margin-bottom: 24px; scroll-margin-top: 20px"
       >
         <div style="font-size: 12px; color: #8a8a84; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px">
-          10 &middot; 2026-10-03 &middot; Structure
+          10 &middot; 2026-10-03 &middot; updated 2026-10-03 &middot; Structure
         </div>
         <h2 style="margin: 0 0 18px; font-size: 21px; color: #111">Component Folders</h2>
 
@@ -493,12 +779,26 @@ components/
 lib/
   formatDate.ts</pre>
         <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Layered: group by how composed a component is</h3>
-        <p style="margin: 0 0 16px">This is <strong>atomic design</strong>: small pieces combine into bigger ones, and the folder tells you which level you are at. The rule is one-way &mdash; a layer may import from layers below it, never above.</p>
+        <p style="margin: 0 0 16px">This is <strong>atomic design</strong>: small pieces combine into bigger ones, and the folder tells you which level you are at. It has <strong>five</strong> levels. The rule is one-way &mdash; a layer may import from layers below it, never above.</p>
+        <ol style="margin: 0 0 16px; padding-left: 22px">
+          <li><strong>Atoms</strong> &mdash; smallest pieces: Button, Input, Logo.</li>
+          <li><strong>Molecules</strong> &mdash; a few atoms together: SearchBox, NavItem.</li>
+          <li><strong>Organisms</strong> &mdash; whole sections: Header, Footer, ProductGrid. An organism may contain other organisms (a Footer holding a NewsletterForm), as long as the import still points to the same layer or a lower one.</li>
+          <li><strong>Templates</strong> &mdash; the page skeleton: where the organisms sit, with no real content yet.</li>
+          <li><strong>Pages</strong> &mdash; a template filled with real data.</li>
+        </ol>
+        <p style="margin: 0 0 16px">In the App Router, the last two levels already have a home. The skeleton shared by many pages is <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">layout.tsx</code>, and the real page is <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">page.tsx</code>, which fetches data and hands it down. So <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">components/</code> usually stops at three folders, and adds <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">templates/</code> only for page skeletons that several unrelated routes reuse <em>inside</em> their layout (for example a two-column &ldquo;sidebar + content&rdquo; arrangement).</p>
         <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+app/
+  layout.tsx          # level 4 for the whole site: Header + {children} + Footer
+  page.tsx            # level 5: fetches data, renders organisms
+  blog/
+    page.tsx          # level 5
 components/
-  atoms/        # smallest pieces: Button, Input, Logo
-  molecules/    # a few atoms together: SearchBox, NavItem
-  organisms/    # whole sections: Header, Footer, Sidebar</pre>
+  atoms/              # level 1
+  molecules/          # level 2
+  organisms/          # level 3
+  templates/          # level 4, optional: e.g. TwoColumn.tsx</pre>
         <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Colocation: keep a component next to the route that owns it</h3>
         <p style="margin: 0 0 16px">A folder inside <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">app/</code> only becomes a URL when it contains a <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">page.tsx</code>. So you can safely keep route-specific files beside the route. Prefix a folder with <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">_</code> to make it <strong>private</strong> and guarantee the router ignores it entirely.</p>
         <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
@@ -513,13 +813,14 @@ app/
             <li><strong>Reaching for atoms and molecules on day one.</strong> Three folders holding one file each is harder to navigate than one flat folder. Start flat, split when it actually hurts.</li>
             <li><strong>Thinking every file in <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">app/</code> becomes a URL.</strong> Only <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">page.tsx</code> creates a route. A stray <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">page.tsx</code> in a helper folder, though, will quietly publish a URL.</li>
             <li><strong>Importing upward</strong> &mdash; an atom pulling in an organism. That makes the layers meaningless and invites circular imports.</li>
+            <li><strong>Creating <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">app/template.tsx</code> for an atomic-design template.</strong> Inside <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">app/</code>, <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">template.tsx</code> is a reserved file: a layout that <em>remounts</em> on every navigation and resets state. Same word, unrelated meaning. A <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">components/templates/</code> folder is safe.</li>
           </ul>
         </div>
         <div style="border-left: 3px solid #2563eb; background: #eff6ff; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 20px 0 0">
           <strong>Next:</strong> read up on <strong>route groups</strong>, <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">(name)</code>, which group routes for a shared layout without adding a URL segment.
         </div>
         <p style="margin: 18px 0 0; font-size: 13px; color: #8a8a84">
-          Next.js 16.3.5 &mdash; bundled docs <code>01-app/01-getting-started/02-project-structure.md</code>.
+          Next.js 16.3.5 &mdash; bundled docs <code>01-app/01-getting-started/02-project-structure.md</code>, <code>03-api-reference/03-file-conventions/template.md</code>.
         </p>
 
         <p style="margin: 20px 0 0; font-size: 12px">
@@ -532,7 +833,7 @@ app/
         style="background: #fff; border: 1px solid #e4e4df; border-radius: 10px; padding: 24px 28px; margin-bottom: 24px; scroll-margin-top: 20px"
       >
         <div style="font-size: 12px; color: #8a8a84; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px">
-          09 &middot; 2026-09-25 &middot; Components
+          09 &middot; 2026-09-25 &middot; updated 2026-10-03 &middot; Components
         </div>
         <h2 style="margin: 0 0 18px; font-size: 21px; color: #111">Wrapper Components</h2>
 
@@ -562,9 +863,32 @@ export default function ButtonLink({
 export default function MyLink(props: ComponentProps&lt;typeof Link&gt;) {
   return &lt;Link {...props} /&gt;;
 }</pre>
+        <h3 style="margin: 24px 0 8px; font-size: 16px; color: #111">Wrapping two elements: one bag per destination</h3>
+        <p style="margin: 0 0 16px"><code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">...props</code> can only be spread onto <em>one</em> element. When a component renders two (say a link around an image), anything the caller meant for the inner one silently lands on the outer one. Give the inner element its own prop object instead, typed from the real component, so TypeScript keeps every rule it has (like a required <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">alt</code>):</p>
+        <pre style="background: #1c1c1a; color: #e8e8e3; padding: 18px 20px; border-radius: 8px; overflow-x: auto; font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.6; margin: 0 0 16px">
+// components/ImageLink.tsx
+import Image from "next/image";
+import Link from "next/link";
+import type { ComponentProps } from "react";
+
+type ImageLinkProps = Omit&lt;ComponentProps&lt;typeof Link&gt;, "children"&gt; &amp; {
+  img: ComponentProps&lt;typeof Image&gt;;   // everything for the &lt;img&gt;
+};
+
+export default function ImageLink({ img, ...linkProps }: ImageLinkProps) {
+  return (
+    &lt;Link {...linkProps}&gt;
+      &lt;Image {...img} /&gt;
+    &lt;/Link&gt;
+  );
+}
+
+// Usage: link props at the top level, image props inside img={{ }}
+// &lt;ImageLink href="/" img={{ src: "/logo.png", alt: "Home", width: 200, height: 80 }} /&gt;</pre>
         <div style="background: #fef3c7; border-left: 3px solid #d97706; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 20px 0 0">
           <strong>Common mistakes</strong>
           <ul style="margin: 8px 0 0; padding-left: 22px">
+            <li><strong>Destructuring a prop and never passing it on.</strong> <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">({ alt, ...props })</code> pulls <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">alt</code> <em>out</em> of <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">props</code>; if you then don't write <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">alt={alt}</code> somewhere, it's simply lost.</li>
             <li><strong>Chains three deep</strong> where the middle layer only forwards props. Each hop is one more file to open when you debug. Collapse it.</li>
             <li><strong>Wrapping &ldquo;in case we need it later.&rdquo;</strong> Adding the layer when you need it costs one small edit; carrying it meanwhile costs every reader.</li>
             <li><strong>Overwriting <code style="background: #f0f0ec; padding: 1px 5px; border-radius: 4px; font-family: ui-monospace, Consolas, monospace; font-size: 14px">className</code></strong> instead of merging it. Then callers can never adjust spacing, and they reach past your wrapper.</li>

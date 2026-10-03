@@ -1,4 +1,4 @@
-import InlineLink from "@/Components/atoms/links/InlineLink";
+import InlineLink from "@/components/atoms/links/InlineLink";
 import type { ComponentProps } from "react";
 
 type LinkTagProps = ComponentProps<typeof InlineLink>;

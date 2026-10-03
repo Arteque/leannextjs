@@ -1,5 +1,5 @@
 "use client"
-import LinkTag from "@/Components/molecules/LinkTag";
+import LinkTag from "@/components/molecules/LinkTag";
 
 const MainNav = () => {
   return (

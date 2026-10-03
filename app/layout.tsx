@@ -6,8 +6,8 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 
 import "./globals.css";
 
-import HeaderMain from "@/Components/organisms/HeaderMain";
-import FooterMain from "@/Components/organisms/FooterMain";
+import HeaderMain from "@/components/organisms/HeaderMain";
+import FooterMain from "@/components/organisms/FooterMain";
 
 config.autoAddCss = false;
 
